@@ -1,8 +1,8 @@
-Ctrl + Space = Bicep suggestions Bicep modules MS Learn: [Bicep  
-modules - Azure Resource Manager | Microsoft Learn  
-](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules)
+Ctrl + Space = Bicep suggestions Bicep modules MS Learn: [Bicep modules - Azure Resource Manager | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules)
 
+```
 –confirm-with-what-if -c
+```
 
 Instruct the command to run deployment What-If before executing the  
 deployment. It then prompts you to acknowledge resource changes before  
