@@ -398,25 +398,23 @@ sudo vim /etc/fstab
 
 4. **Add the following line to the end of the file:**
 
-    ```Plain
-    nfs_server_ip:/exported/path /mnt/share_name nfs defaults,_netdev 0 0
-    ```
-    
+```Plain
+nfs_server_ip:/exported/path /mnt/share_name nfs defaults,_netdev 0 0
+ ```
 
 Replace `nfs_server_ip` with the IP address of your NFS server and `/exported/path` with the path exported on the NFS server.
 
 1. **Apply the changes by mounting all filesystems:**
-    
-    ```Shell
-    sudo mount -a
-    ```
-    
+
+```Shell
+sudo mount -a
+ ```
+
 2. **Verify the mount:**
-    
-    ```Shell
-    df -h
-    ```
-    
+
+```Shell
+df -h
+```
 
 You should see your NFS share listed.
 
@@ -590,7 +588,6 @@ UN_DELETE_DELAY=1h
 UN_START_DELAY=1m
 UN_RETRY_DELAY=5m
 UNPACKERR_CONFIG=/home/kaf/docker/media-stack/appdata/unpackerr
-
 ```
 
 ### `unifi-stack/.env.example`
@@ -628,8 +625,6 @@ PGID=1000
 media-stack.yaml
 
 ```YAML
-version: "3.8"
-
 services:
   plex:
     container_name: ${PLEX_NAME}
@@ -774,8 +769,6 @@ services:
 docker-compose.yml
 
 ```YAML
-version: "3.8"
-
 services:
   mongodb:
     container_name: ${MONGO_NAME}
@@ -837,10 +830,8 @@ environment:
 
 - Use a mobile app or unsupported format (e.g., subtitles, 4K -> 1080p)
 - Check **Now Playing** in Plex UI:
-    - `Transcode (H.264)` → good
+	-  `Transcode (H.264)` → good
     - `Direct Play` → no transcoding = no RAM usage
-
----
 
 ### 3. Check usage from inside the container
 
