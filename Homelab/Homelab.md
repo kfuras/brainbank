@@ -257,13 +257,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ```
 
 3. Verify that the installation is successful by running the `hello-world` image:
-    ```Shell
-    sudo docker run hello-world
-    ```
-    
-    This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
-    
 
+```Shell
+sudo docker run hello-world
+```
+
+This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
+ 
 You have now successfully installed and started Docker Engine.
 
 > Tip
@@ -289,51 +289,50 @@ If you don't want to preface the `docker` command with `sudo`, create a Unix 
 To create the `docker` group and add your user:
 
 1. Create the `docker` group.
-    
-    ```Shell
-    sudo groupadd docker
-    ```
-    
+
+```Shell
+sudo groupadd docker
+```
+
 2. Add your user to the `docker` group.
-    
-    ```Shell
-    sudo usermod -aG docker $USER
-    ```
-    
+
+```Shell
+sudo usermod -aG docker $USER
+```
+
 3. Log out and log back in so that your group membership is re-evaluated.
-    
-    > If you're running Linux in a virtual machine, it may be necessary to restart the virtual machine for changes to take effect.
-    
-    You can also run the following command to activate the changes to groups:
-    
-    ```Shell
-    newgrp docker
-    ```
-    
+ 
+> If you're running Linux in a virtual machine, it may be necessary to restart the virtual machine for changes to take effect.
+
+You can also run the following command to activate the changes to groups:
+ 
+```Shell
+newgrp docker
+```
+
 4. Verify that you can run `docker` commands without `sudo`.
-    
-    ```Shell
-    docker run hello-world
-    ```
-    
-    This command downloads a test image and runs it in a container. When the container runs, it prints a message and exits.
-    
-    If you initially ran Docker CLI commands using `sudo` before adding your user to the `docker` group, you may see the following error:
-    
-    ```Shell
-    WARNING: Error loading config file: /home/user/.docker/config.json -
-    stat /home/user/.docker/config.json: permission denied
-    ```
-    
-    This error indicates that the permission settings for the `~/.docker/` directory are incorrect, due to having used the `sudo` command earlier.
-    
-    To fix this problem, either remove the `~/.docker/` directory (it's recreated automatically, but any custom settings are lost), or change its ownership and permissions using the following commands:
-    
-    ```Shell
-    sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-    sudo chmod g+rwx "$HOME/.docker" -R
-    ```
-    
+
+```Shell
+docker run hello-world
+```
+
+This command downloads a test image and runs it in a container. When the container runs, it prints a message and exits.
+
+If you initially ran Docker CLI commands using `sudo` before adding your user to the `docker` group, you may see the following error:
+
+```Shell
+WARNING: Error loading config file: /home/user/.docker/config.json -
+stat /home/user/.docker/config.json: permission denied
+```
+
+This error indicates that the permission settings for the `~/.docker/` directory are incorrect, due to having used the `sudo` command earlier.
+
+To fix this problem, either remove the `~/.docker/` directory (it's recreated automatically, but any custom settings are lost), or change its ownership and permissions using the following commands:
+
+```Shell
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
+```
 
 ## 2.1 (Optional) [Configure Docker to start on boot with systemd](https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd)
 
@@ -358,23 +357,20 @@ You can use systemd unit files to configure the Docker service on startup, for e
 Docker Compose is now included as a Docker plugin. To ensure it's installed:
 
 1. **Update the package index:**
-    
-    ```Shell
-    sudo apt-get update
-    ```
-    
+```Shell
+sudo apt-get update
+```
+
 2. **Install the Docker Compose plugin:**
-    
-    ```Shell
-    sudo apt-get install -y docker-compose-plugin
-    ```
-    
+```Shell
+sudo apt-get install -y docker-compose-plugin
+```
+
 3. **Verify the installation:**
-    
-    ```Shell
-    docker compose version
-    ```
-    
+
+```Shell
+docker compose version    
+```
 
 _For more information, refer to the Docker Compose installation guide._
 
@@ -383,25 +379,25 @@ _For more information, refer to the Docker Compose installation guide._
 To automatically mount an NFS share on your Ubuntu system:
 
 1. **Install NFS client utilities:**
-    
-    ```Shell
-    sudo apt-get install -y nfs-common
-    ```
-    
+
+```Shell
+sudo apt-get install -y nfs-common
+```
+
 2. **Create a mount point:**
-    
-    ```Shell
-    sudo mkdir -p /mnt/data
-    ```
-    
+
+```Shell
+sudo mkdir -p /mnt/data
+```
+
 3. **Edit the** `**fstab**` **file to add the NFS share:**
-    
-    ```Shell
-    sudo vim /etc/fstab
-    ```
-    
+
+```Shell
+sudo vim /etc/fstab
+```
+
 4. **Add the following line to the end of the file:**
-    
+
     ```Plain
     nfs_server_ip:/exported/path /mnt/share_name nfs defaults,_netdev 0 0
     ```
