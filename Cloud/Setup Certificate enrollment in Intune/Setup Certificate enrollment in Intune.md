@@ -1,8 +1,7 @@
 There’s a few pre-requisites for this:
 
-- Wireless network using WPA2-Enterprise (or any flavour that uses  
-    802.1x)  
-    
+- Wireless network using WPA2-Enterprise (or any flavour that uses 802.1x)  
+
 - Active Directory domain already set up
 - AD Certification Authority already set up (Enterprise CA)
 - User accounts synced to Azure AD
@@ -17,24 +16,12 @@ server of your choosing and creating some configuration profiles.
 
 First step is to configure a template on the CA server:
 
-- Open the Certification Authority console, expand **Certificate**  
-    **Templates**  
-    , right click on the folder and  
-    pick **Manage**. This will open the Certificate Templates  
-    Console.  
-    
-- Find the **User** certificate template, right click on  
-    it and select **Duplicate**.
-- Name the template on the General tab, then on the Compatibility tab  
-    set the Certification Authority to Windows Server 2008 R2, and the  
-    Certificate Recipient to Windows 7/Server 2008 R2.  
-    
-- On the Request Handling tab, tick Allow private key to be exported.  
-    This is required so that the the Intune connector can install the  
-    private key onto the end user device.  
-    
-- On the Cryptography tab, make sure the minimum key size is  
-    2048.  
+- Open the Certification Authority console, expand **Certificate**  **Templates**, right click on the folder and pick **Manage**. This will open the Certificate Templates Console.  
+- Find the **User** certificate template, right click on it and select **Duplicate**.
+- Name the template on the General tab, then on the Compatibility tab set the Certification Authority to Windows Server 2008 R2, and the Certificate Recipient to Windows 7/Server 2008 R2.  
+- On the Request Handling tab, tick Allow private key to be exported. This is required so that the the Intune connector can install the private key onto the end user device.  
+- On the Cryptography tab, make sure the minimum key size is 2048.
+      
     
 - On the Subject Name tab, make sure you selected Supply in the  
     request.  

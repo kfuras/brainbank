@@ -8,29 +8,32 @@ Instruct the command to run deployment What-If before executing the
 deployment. It then prompts you to acknowledge resource changes before  
 it continues.  
 
+```
 –resource-group -g [Required]
+```
 
 The resource group to create deployment at.
 
+```
 –parameters -p
+```
 
 Supply deployment parameter values. Parameters may be supplied from a  
-file using the  
-`@{path}` syntax, a JSON string, or as  
-<KEY=VALUE> pairs. Parameters are evaluated in order, so when a  
-value is assigned twice, the latter value will be used. It is  
-recommended that you supply your parameters file first, and then  
-override selectively using KEY=VALUE syntax.  
+file using the `@{path}` syntax, a JSON string, or as <KEY=VALUE> pairs. Parameters are evaluated in order, so when a value is assigned twice, the latter value will be used. It is recommended that you supply your parameters file first, and then override selectively using KEY=VALUE syntax.  
 
+```
 –template-file -f
+```
 
 The path to the template file or Bicep file.
 
+```
 –mode
+```
 
 The deployment mode.
 
-Allowed values: Complete, Incremental. Default: Incremental.
+Allowed values: (Complete, Incremental). Default: Incremental.
 
 Generate ARM Template from Bicep
 
@@ -77,5 +80,3 @@ Convert json to bicep
 ```Shell
 az bicep decompile --file main.json
 ```
-
-[[ALZ Bicep]]
