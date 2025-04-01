@@ -1,6 +1,5 @@
 ## Examples of Branch Naming Patterns
 
-
 | Branch Name                    | When to use it                              |
 | ------------------------------ | ------------------------------------------- |
 | `blog_image_generator`         | Working on that tool                        |
@@ -13,7 +12,7 @@
 
 We'll organize your keys and SSH config like this:
 
-### Directory Structure
+## Directory Structure
 
 ```Shell
 ~/.ssh/
@@ -26,7 +25,7 @@ We'll organize your keys and SSH config like this:
 ├── config                     # SSH config file
 ```
 
-## 🛠 Step-by-Step Setup
+## Step-by-Step Setup
 
 ### 1. Generate One Key per Server
 
