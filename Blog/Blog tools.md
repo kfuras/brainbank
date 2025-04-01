@@ -1,20 +1,3 @@
-- [[#GPTs List]]
-- [[#The Tool Stack]]
-- [[#Disclaimer]]
-- [[#AI tools]]
-- [[#Add shadow to Images in Kadence]]
-- [[#Paragraph spacing in Kadence theme]]
-- [[#Install Wireframe in Kadence Blocks]]
-- [[#Install SB Blocks in Kadence Blocks]]
-
-  
-
-[[Certification Badges]]
-
-[[Draft]]
-
-[[Published]]
-
 ## GPTs List
 
 [Topical Authority Planner](https://chat.openai.com/g/g-aicbERBku-topical-authority-for-seo-gpt-generator)
