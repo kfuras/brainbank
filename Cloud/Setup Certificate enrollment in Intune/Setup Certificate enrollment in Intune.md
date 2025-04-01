@@ -20,38 +20,15 @@ First step is to configure a template on the CA server:
 - Find the **User** certificate template, right click on it and select **Duplicate**.
 - Name the template on the General tab, then on the Compatibility tab set the Certification Authority to Windows Server 2008 R2, and the Certificate Recipient to Windows 7/Server 2008 R2.  
 - On the Request Handling tab, tick Allow private key to be exported. This is required so that the the Intune connector can install the private key onto the end user device.  
-- On the Cryptography tab, make sure the minimum key size is 2048.
-      
-    
-- On the Subject Name tab, make sure you selected Supply in the  
-    request.  
-    
-- On the Extensions tab, under Application Policies, make sure that  
-    there are three entries - Client Authentication, Secure Email and  
-    Encrypting File System.  
-    
-- On the Security tab, add the computer account of the server you will  
-    be using for the Intune connector, with Read and Enroll permissions.  
-    Click Apply to save the template, then close the console.  
-    
-- Back in the Certification Authority console, right click  
-    on **Certificate Templates** and pick **New >**  
-    **Certificate Template to issue**  
-    . Select the template you just  
-    created.  
-    
-- Finally we need to allow the server to manage certificates - open  
-    the CA properties and add the computer account of the server that will  
-    host the connector, with **Issue and Manage Certificates**  
-    and **Request Certificates** permissions.
-- If you don’t have your root CA certificate already exported, open  
-    the CA properties, select the current certificate from the list and  
-    click View Certificate. From there, you can go to the Details tab, click  
-    Copy to File, and export it as Base64 encoded .cer file.  
-    
+- On the Cryptography tab, make sure the minimum key size is 2048.    
+- On the Subject Name tab, make sure you selected Supply in the request.  
+- On the Extensions tab, under Application Policies, make sure that there are three entries - Client Authentication, Secure Email and Encrypting File System.  
+- On the Security tab, add the computer account of the server you will be using for the Intune connector, with Read and Enroll permissions. Click Apply to save the template, then close the console.  
+- Back in the Certification Authority console, right click on **Certificate Templates** and pick **New >** **Certificate Template to issue**. Select the template you just created.  
+- Finally we need to allow the server to manage certificates - open the CA properties and add the computer account of the server that will host the connector, with **Issue and Manage Certificates** and **Request Certificates** permissions.
+- If you don’t have your root CA certificate already exported, open the CA properties, select the current certificate from the list and click View Certificate. From there, you can go to the Details tab, click Copy to File, and export it as Base64 encoded .cer file.  
 
-## Installing the  
-Certificate Connector for Intune  
+## Installing the Certificate Connector for Intune  
 
 We will need a service account to run the connector, assuming you  
 don’t want it to run as SYSTEM. I’ve not tested it as SYSTEM, but  
@@ -62,11 +39,7 @@ domain controller your only option would be to put the account in the
 Domain Admins group. Don’t forget to configure the Log on as a Service  
 right within gpedit.msc.  
 
-Open the Intune portal and go to [Tenant  
-administration > Connectors and tokens > Certificate  
-connectors  
-](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/TenantAdminConnectorsMenu/certConnectors). Click on Add, then follow the link and instructions to  
-download the installer.  
+Open the Intune portal and go to [Tenant administration > Connectors and tokens > Certificate connectors](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/TenantAdminConnectorsMenu/certConnectors). Click on Add, then follow the link and instructions to download the installer.  
 
 Run the installer with administrative privileges on the server. Run  
 through the steps and make sure you have selected at least PKCS on the  
@@ -77,19 +50,12 @@ Once you’ve completed the wizard and it has completed successfully,
 you should be able to refresh the Certificate connectors page and see  
 your connector listed.  
 
-## Deploying the AD CA Root  
-Certificate  
+## Deploying the AD CA Root Certificate  
 
 You’ll need to install the CA root certificate into the Trusted Root  
 store on your end user devices. We can do this using a configuration  
-profile - in the Intune portal, go to   
-[Devices  
-> Configuration profiles  
-](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/DevicesMenu/configurationProfiles) and click on Create profile. Select the  
-platform (Windows 10 and later), then Profile type: Templates >  
-Trusted certificate. If you’re trying to deploy this to other devices,  
-the profile type may be slightly different but it should be obvious  
-which one is a trusted certificate.  
+profile - in the Intune portal, go to [Devices  > Configuration profiles](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/DevicesMenu/configurationProfiles) and click on Create profile. Select the platform (Windows 10 and later), then Profile type: Templates > Trusted certificate. If you’re trying to deploy this to other devices,  
+the profile type may be slightly different but it should be obvious which one is a trusted certificate.  
 
 Run through the steps, uploading the CA root certificate’s .cer file  
 you exported previously. Complete the assignments as required, and  
@@ -101,15 +67,21 @@ contains my Surface devices.
 Assuming you already have a functional 802.1x Wi-Fi setup, you should  
 have at least one Network Policy within NPS. Make sure that one of the  
 authentication methods for this is “Microsoft: Smart Card or other  
-certificate”. You don’t have to remove the other options - if you leave  
+certificate”. 
+
+You don’t have to remove the other options - if you leave  
 PEAP and Secured Password in then people will still be able to connect  
 with their username/password as normal. We will be using a client side  
 configuration profile to force the client to use a certificate.  
 
 Double check which certificate NPS is using to identify itself -  
 under Contraints > Authentication Methods, click on the various  
-options and Edit. This should bring a window up which tells you the  
-current certificate. If this is issued by your AD CA then you’ll have an  
+options and Edit. 
+
+This should bring a window up which tells you the  
+current certificate. 
+
+If this is issued by your AD CA then you’ll have an  
 easier time configuring the profiles, but it doesn’t have to be - mine  
 is issued by DigiCert so I need to grab the root CA cert used (in this  
 case, DigiCert Global Root CA) and repeat the previous steps to deploy  
@@ -118,19 +90,12 @@ this certificate to the devices.
 ## Deploying the Certificate
 
 We now need to create a PKCS Certificate configuration profile - in  
-the Intune portal, go to   
-[Devices  
-> Configuration profiles  
-](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/DevicesMenu/configurationProfiles) and click on Create profile. Select the  
-platform (Windows 10 and later), then Profile type: Templates > PKCS  
-certificate.  
+the Intune portal, go to [Devices Configuration profiles](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/DevicesMenu/configurationProfiles) and click on Create profile. Select the platform (Windows 10 and later), then Profile type: Templates > PKCS certificate.  
 
 Fill out the fields as below - leave the defaults except for:
 
 - Key Storage Provider: Enroll to Software KSP
-- Certification authority: The FQDN of the CA server which will be  
-    issuing the certificates. This can be the root or a subordinate server  
-    (preferably subordinate as your root enterprise CA should be  
+- Certification authority: The FQDN of the CA server which will be issuing the certificates. This can be the root or a subordinate server (preferably subordinate as your root enterprise CA should be  
     offline)  
     
 - Certification authority name: The name shown in the CA console,  
