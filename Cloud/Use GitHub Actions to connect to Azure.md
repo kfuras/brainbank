@@ -1,5 +1,4 @@
 Create an Azure Active Directory application and service principal  
-  
 
 This command will output the AppId property which is your ClientId. The Id property is APPLICATION-OBJECT-ID, and it will be used for creating federated credentials with Graph API calls.  
 
@@ -33,18 +32,28 @@ $clientId = (Get-AzADApplication -DisplayName kf_sp_bicep_oidc).AppId$subscripti
 
 Add federated credentials - Replace APPLICATION-OBJECT-ID with the Id (generated while creating app) for your Azure Active Directory application. - Set a value for CREDENTIAL-NAME to reference later. - Set the subject. The value of this is defined by GitHub depending on your workflow: - Jobs in your GitHub Actions environment: repo:  
   
-`< Organization/Repository >:environment:< Name >`  
-- For Jobs not tied to an environment, include the ref path for  
-branch/tag based on the ref path used for triggering the workflow: repo:  
+```
+< Organization/Repository >:environment:< Name > 
+```
+
+For Jobs not tied to an environment, include the ref path for branch/tag based on the ref path used for triggering the workflow: repo:  
   
-`< Organization/Repository >:ref:< ref path>`.  
+```
+< Organization/Repository >:ref:< ref path> 
+```
+
 For example,  
   
-`repo:n-username/ node_express:ref:refs/heads/my-branch or repo:n-username/ node_express:ref:refs/tags/my-tag`.  
-- For workflows triggered by a pull request event: repo:  
+```
+repo:n-username/ node_express:ref:refs/heads/my-branch or repo:n-username/ node_express:ref:refs/tags/my-tag
+```
+
+For workflows triggered by a pull request event: repo:  
   
-`< Organization/Repository >:pull_request`.
+```
+< Organization/Repository >:pull_request
+```
 
 ```PowerShell
-Invoke-AzRestMethod -Method POST -Uri 'https://graph.microsoft.com/beta/applications/000-000-000-000-000/federatedIdentityCredentials' -Payload  '{"name":"github_pipeline","issuer":"https://token.actions.githubusercontent.com","subject":"repo:kfuras/bicep:ref:refs/heads/main","description":"PipelineTesting","audiences":["api://AzureADTokenExchange"]}'
+Invoke-AzRestMethod -Method POST -Uri 'https://graph.microsoft.com/beta/applications/000-000-000-000-000/federatedIdentityCredentials' -Payload '{"name":"github_pipeline","issuer":"https://token.actions.githubusercontent.com","subject":"repo:kfuras/bicep:ref:refs/heads/main","description":"PipelineTesting","audiences":["api://AzureADTokenExchange"]}'
 ```

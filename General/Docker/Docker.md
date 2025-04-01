@@ -1,11 +1,8 @@
 ## CPU quota flag
 
-[Don’t  
-Build Docker Apps Without This Flag - DEV Community  
-](https://dev.to/code42cate/dont-build-docker-apps-without-this-flag-48kg)
+[Don’t Build Docker Apps Without This Flag - DEV Community](https://dev.to/code42cate/dont-build-docker-apps-without-this-flag-48kg)
 
-## Enable  
-TCP port 2375 for external connection to Docker  
+## Enable TCP port 2375 for external connection to Docker  
 
 See this [issue](https://github.com/moby/moby/issues/25471).
 
@@ -13,9 +10,7 @@ Docker best practise to [Control
 and configure Docker with systemd  
 ](https://docs.docker.com/engine/admin/systemd/\#/custom-docker-daemon-options).
 
-1. Create `daemon.json` file  
-    in   
-    `/etc/docker`:
+1. Create `daemon.json` file in `/etc/docker`:
 
 ```Plain
 {"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}

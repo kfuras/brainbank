@@ -1,6 +1,4 @@
-[Verify encryption status for Linux - Azure Disk Encryption - Azure Virtual  
-Machines | Microsoft Learn  
-](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/how-to-verify-encryption-status\#powershell)
+[Verify encryption status for Linux - Azure Disk Encryption - Azure Virtual Machines | Microsoft Learn](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/how-to-verify-encryption-status\#powershell)
 
 OSDisk
 
