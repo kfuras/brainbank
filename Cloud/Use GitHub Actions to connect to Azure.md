@@ -1,8 +1,7 @@
 Create an Azure Active Directory application and service principal  
   
 
-This command will output the AppId property which is your ClientId. The Id property is  
-APPLICATION-OBJECT-ID, and it will be used for creating federated credentials with Graph API calls.  
+This command will output the AppId property which is your ClientId. The Id property is APPLICATION-OBJECT-ID, and it will be used for creating federated credentials with Graph API calls.  
 
 ```PowerShell
 New-AzADApplication -DisplayName kf_sp_bicep_oidc
@@ -32,11 +31,7 @@ Get the values for clientId, objectId, subscriptionId, and tenantId to use later
 $clientId = (Get-AzADApplication -DisplayName kf_sp_bicep_oidc).AppId$subscriptionId = (Get-AzContext).Subscription.Id$tenantId = (Get-AzContext).Subscription.TenantId$objectId = (Get-AzADApplication -DisplayName kf_sp_bicep_oidc).Id
 ```
 
-Add federated credentials - Replace APPLICATION-OBJECT-ID with the Id  
-(generated while creating app) for your Azure Active Directory  
-application. - Set a value for CREDENTIAL-NAME to reference later. - Set  
-the subject. The value of this is defined by GitHub depending on your  
-workflow: - Jobs in your GitHub Actions environment: repo:  
+Add federated credentials - Replace APPLICATION-OBJECT-ID with the Id (generated while creating app) for your Azure Active Directory application. - Set a value for CREDENTIAL-NAME to reference later. - Set the subject. The value of this is defined by GitHub depending on your workflow: - Jobs in your GitHub Actions environment: repo:  
   
 `< Organization/Repository >:environment:< Name >`  
 - For Jobs not tied to an environment, include the ref path for  

@@ -59,56 +59,45 @@ ConfigurationData | where ConfigDataType == "WindowsServices" and SvcDisplayName
 Select **+ New alert rule** to use this query as the alert:  
 
 [![](https://www.smcculloch.com/static/5a33cfda35105a777a7ce44891322abd/fcda8/new-alert-rule.png)](https://www.smcculloch.com/static/5a33cfda35105a777a7ce44891322abd/fcda8/new-alert-rule.png)
-New Alert Rule - Log Analytics  
+> New Alert Rule - Log Analytics  
 
 The rule engine will use this query as the signal and you can specify  
 how often it checks:  
 
-- Set a **threshold value** to **0**.
+Set a **threshold value** to **0**
 
-> Azure will evaluate this query every 5 minutes and will trigger on 1  
-> or more change events.  
+> Azure will evaluate this query every 5 minutes and will trigger on 1 or more change events.  
 
 [![](https://www.smcculloch.com/static/9b9fbc019ac4c6ae62d1cf27fb112d1d/fcda8/alert-rule.png)](https://www.smcculloch.com/static/9b9fbc019ac4c6ae62d1cf27fb112d1d/fcda8/alert-rule.png)
 
 Alert Rule
 
 - Navigate to **Actions**
-- Specify an existing **Action Group** or create a new  
-    one. My action group sends an email to myself.  
-    
+- Specify an existing **Action Group** or create a new one. My action group sends an email to myself. 
 
-> This is a list of people/services to notify when the alert  
-> triggers.  
+> This is a list of people/services to notify when the alert triggers.  
 
 [![](https://www.smcculloch.com/static/f40a3e765e060313048e3cc5d1f665d3/fcda8/alert-rule-action.png)](https://www.smcculloch.com/static/f40a3e765e060313048e3cc5d1f665d3/fcda8/alert-rule-action.png)
 
 Alert Rule Action
 
 - Navigate to **Details**.
-- Give your alert an **Alert Rule**  
-    **Name**  
-     and **Severity**.
+- Give your alert an **Alert Rule** **Name** and **Severity**.
 
 [![](https://www.smcculloch.com/static/f66bdbc5ab6efafabe517533d0cdfb5d/fcda8/alert-rule-details.png)](https://www.smcculloch.com/static/f66bdbc5ab6efafabe517533d0cdfb5d/fcda8/alert-rule-details.png)
 
-Alert Rule Details
+> Alert Rule Details
 
 - **Review + Create** to complete the alert setup.
 
 ## Step 3: Testing the Alert
 
-RDP into your server and stop the **Print**  
-**Spooler**  
- service.
+RDP into your server and stop the **Print Spooler** service.
 
 [![](https://www.smcculloch.com/static/cf2072d30832c0d971ff66765faa6695/fcda8/stop-service.png)](https://www.smcculloch.com/static/cf2072d30832c0d971ff66765faa6695/fcda8/stop-service.png)
+> Stop Service
 
-Stop Service
-
-Once the service has stopped, you should receive a notification  
-within the next 5 minutes stating the service has stopped.  
+Once the service has stopped, you should receive a notification within the next 5 minutes stating the service has stopped.  
 
 [![](https://www.smcculloch.com/static/0fe760d1420c46e1705dda489d9ffe55/fcda8/alert-detail.png)](https://www.smcculloch.com/static/0fe760d1420c46e1705dda489d9ffe55/fcda8/alert-detail.png)
-
-Alert Detail
+> Alert Detail

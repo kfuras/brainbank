@@ -1,6 +1,4 @@
-**Terraform destroy is a command that allows you to destroy**  
-**either a full stack (based on your TF files), or single resources, using**  
-**the -target option.**  
+Terraform destroy is a command that allows you to destroy either a full stack (based on your TF files), or single resources, using the -target option.  
 
 ```Plain
 terraform state list
@@ -43,9 +41,7 @@ terraform apply -destroy
 
 **azurerm_storage_account provider**
 
-[terraform-provider-azurerm/storage_account.html.markdown  
-at main · hashicorp/terraform-provider-azurerm · GitHub  
-](https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_account.html.markdown)
+[terraform-provider-azurerm/storage_account.html.markdown at main · hashicorp/terraform-provider-azurerm · GitHub](https://github.com/hashicorp/terraform-provider-azurerm/blob/main/website/docs/r/storage_account.html.markdown)
 
 Terraform Resource ID for NSG
 
