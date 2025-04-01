@@ -1,0 +1,33 @@
+# Obsidian settings – don't sync between devices
+.obsidian/
+
+# Common macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Common Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Common Linux file clutter
+*~
+
+# If you only want markdown + folders
+# *        ← ignore everything
+# !*/      ← allow folder structure
+# !*.md    ← allow all markdown files
+
+# Optional: keep media/images if used in notes
+!*.png
+!*.jpg
+!*.jpeg
+!*.svg
+!*.gif
+
+# Other common ignore
+*.log
+*.lock
+*.tmp

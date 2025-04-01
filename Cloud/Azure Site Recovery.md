@@ -1,0 +1,1 @@
+Links: [Setting up an Azure Disaster Recovery Plan with Azure Site Recovery (adamtheautomator.com)](https://adamtheautomator.com/azure-disaster-recovery/#Enabling_Replication_Site_Recovery)
