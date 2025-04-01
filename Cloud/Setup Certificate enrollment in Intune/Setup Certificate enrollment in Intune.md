@@ -95,88 +95,59 @@ the Intune portal, go to [Devices Configuration profiles](https://endpoint.micr
 Fill out the fields as below - leave the defaults except for:
 
 - Key Storage Provider: Enroll to Software KSP
-- Certification authority: The FQDN of the CA server which will be issuing the certificates. This can be the root or a subordinate server (preferably subordinate as your root enterprise CA should be  
-    offline)  
-    
-- Certification authority name: The name shown in the CA console,  
-    usually DOMAIN-COMPUTERNAME-ca  
-    
+- Certification authority: The FQDN of the CA server which will be issuing the certificates. This can be the root or a subordinate server (preferably subordinate as your root enterprise CA should be offline)  
+- Certification authority name: The name shown in the CA console, usually DOMAIN-COMPUTERNAME-ca  
 - Certificate template name: The name of the certificate template we  
     made earlier  
     
 - Certificate type: User
-- Subject alternative name: User principal name (UPN), Value:  
-    {{UserPrincipalName}}  
-    
-- Extended key usage: Client Authentication, Secure Email (these two  
-    can be added via the Predefined Value dropdown), and finally Encrypting  
-    File System, 1.3.6.1.4.1.311.10.3.4. I’m not sure if you need the Secure  
-    Email and EFS entries here but I had a lot of trouble getting the  
-    Windows 10 device to auto select the certificate, and as they’re on the  
-    cert - they can go in here too.  
-    
-    ![CloudattachmentsPasted_image_20221116120736](attachments/CloudattachmentsPasted_image_20221116120736.png)
-    
+- Subject alternative name: User principal name (UPN), Value:{{UserPrincipalName}}  
+- Extended key usage: Client Authentication, Secure Email (these two can be added via the Predefined Value dropdown), and finally Encrypting File System, 1.3.6.1.4.1.311.10.3.4. I’m not sure if you need the Secure Email and EFS entries here but I had a lot of trouble getting the Windows 10 device to auto select the certificate, and as they’re on the cert - they can go in here too.      ![CloudattachmentsPasted_image_20221116120736](attachments/CloudattachmentsPasted_image_20221116120736.png)
 
 If you want to assign a domain name as a SAN to the certificate  
 enrollment:  
 
 ![CloudattachmentsPasted_image_20221116121259](attachments/CloudattachmentsPasted_image_20221116121259.png)
 
-Assign the  
-profile to the appropriate groups (you can target a device if you want  
+Assign the profile to the appropriate groups (you can target a device if you want  
 to pick “all users on these devices”). Wait a while for your devices to  
 update their configuration profiles (or click Sync in the portal) and  
-you should start to see your CA issuing certificates. If you open mmc  
-and add the Certificates (User) snap-in on a client device, you should  
-see the certificate has appeared on the device.  
+you should start to see your CA issuing certificates. 
+
+If you open mmc and add the Certificates (User) snap-in on a client device, you should see the certificate has appeared on the device.  
 
 A quick note here, if your usernames and UPNs don’t match you may  
 find that you can’t authenticate - i.e. your Pre-Win2000 username must  
 be the same as the beginning of your UPN.  
   
-`DOMAIN\myusername`,  
+```
+DOMAIN\myusername,  
 and   
-`myusername@domain.tld`
+myusername@domain.tld
+```
 
 ## Creating the Wi-Fi Profile
 
-Now in the Intune portal, go to [Devices  
-> Configuration profiles  
-](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/DevicesMenu/configurationProfiles) and click on Create profile. Select the  
-platform (Windows 10 and later), then Profile type: Templates >  
-Wi-Fi. Follow through the steps and fill out the following settings:  
+Now in the Intune portal, go to [Devices Configuration profiles](https://endpoint.microsoft.com/\#blade/Microsoft_Intune_DeviceSettings/DevicesMenu/configurationProfiles) and click on Create profile. Select the platform (Windows 10 and later), then Profile type: Templates > Wi-Fi. Follow through the steps and fill out the following settings:  
 
 - Wi-Fi type: Enterprise
 - Wi-Fi name (SSID): Your Wi-Fi SSID
-- Connection name: The name you want to appear in Windows, usually the  
-    same as the SSID  
-    
+- Connection name: The name you want to appear in Windows, usually the same as the SSID
 - Connect automatically when in range: Yes
 - Authentication mode: User
-- EAP type: EAP-TLS (this is the “Microsoft: Smart Card or other  
-    certificate” one you’ll have seen in NPS)  
-    
-- Server Trust: Certificate server names: The name of the certificate  
-    the NPS server is using, e.g. radius.lab.katystech.blog  
-    
-- Root certificates for server validation: Find the root CA  
-    certificate which issued the NPS server’s certificate (which you should  
-    have uploaded earlier as a Trusted Certificate). If your server  
-    certificate came from your AD CA, use your AD CA Root certificate.  
-    
+- EAP type: EAP-TLS (this is the “Microsoft: Smart Card or other certificate” one you’ll have seen in NPS)
+- Server Trust: Certificate server names: The name of the certificate the NPS server is using, e.g. radius.lab.katystech.blog  
+- Root certificates for server validation: Find the root CA certificate which issued the NPS server’s certificate (which you should have uploaded earlier as a Trusted Certificate). If your server certificate came from your AD CA, use your AD CA Root certificate.  
 - Client Authentication: Authentication method: PKCS certificate
-- Client certificate (Identity certificate): Select the PKCS  
-    Certificate profile you created earlier  
-    
-- Root certificate for client authentication: Select the AD CA root  
-    certificate you uploaded earlier  
-    
+- Client certificate (Identity certificate): Select the PKCS Certificate profile you created earlier
+- Root certificate for client authentication: Select the AD CA root certificate you uploaded earlier 
 
 Complete the steps and assign as required. In my case I assigned to  
 the group containing the Surfaces. While you can assign this to devices  
 (as I did), don’t expect this connection to work while nobody is logged  
-on. It requires there to already be a suitable certificate on the user’s  
+on. 
+
+It requires there to already be a suitable certificate on the user’s  
 Personal store - when nobody is logged on, presumably it’s expecting  
 SYSTEM to have a certificate.  
 
@@ -185,15 +156,11 @@ SYSTEM to have a certificate.
 ## Testing Your Device
 
 You can have a look if your certificate has appeared either through  
-the Certificates snap-in (within mmc.exe) or in  
-PowerShell   
-`Get-ChildItem Cert:\CurrentUser\My` which should  
-show you a list of thumbprints and subjects.  
+the Certificates snap-in (within mmc.exe) or in PowerShell `Get-ChildItem Cert:\CurrentUser\My` which should show you a list of thumbprints and subjects.  
 
 There should also be a wireless profile on the device - which you can  
 view through Windows Settings > Wi-Fi > Known Networks, or by  
-running   
-`netsh wlan show profile` in a command prompt.
+running `netsh wlan show profile` in a command prompt.
 
 Clicking on the Wi-Fi connection menu in the action centre, you  
 should be able to connect to the network without entering any  
@@ -206,9 +173,7 @@ certificates. Make sure you have got the correct certificate on the
 Wi-Fi profile. There are a few troubleshooting methods you can use  
 here:  
 
-- Export the profile from the device -  
-    run   
-    `netsh wlan export profile` to export the saved profiles  
+- Export the profile from the device - run  `netsh wlan export profile` to export the saved profiles  
     to XML, which you can then examine in a text editor.  
     
 - If you’re constantly getting “Unable to connect because you need a  
