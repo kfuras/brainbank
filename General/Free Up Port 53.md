@@ -58,61 +58,37 @@ DNSStubListener=no
 \#ReadEtcHosts=yes
 ```
 
-To save the file using Nano text editor, press `Ctrl + x`,  
-then type   
-`y` and press `Enter`.
+To save the file using Nano text editor, press `Ctrl + x`, then type `y` and press `Enter`.
 
-**2.** Create a symbolic link  
-for   
-`/run/systemd/resolve/resolv.conf` with `/etc/resolv.conf` as  
-the destination:  
+**2.** Create a symbolic link for   
+`/run/systemd/resolve/resolv.conf` with `/etc/resolv.conf` as the destination:  
 
 ```Plain
 sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
 
-Here, `-s` is for creating a symbolic and not hard link,  
-and   
-`-f` is for removing any existing destination files (so  
-it removes   
-`/etc/resolv.conf` if it exists).
+Here, `-s` is for creating a symbolic and not hard link, and `-f` is for removing any existing destination files (so it removes `/etc/resolv.conf` if it exists).
 
 **3.** Reboot your system.
 
-Port 53 should now be free on your Ubuntu system, and you shouldn’t  
-be getting errors like “listen tcp 127.0.0.1:53: bind: address already  
-in use” anymore.  
+Port 53 should now be free on your Ubuntu system, and you shouldn’t be getting errors like “listen tcp 127.0.0.1:53: bind: address already in use” anymore.  
 
-You can check to see if port 53 is in use or not by  
-running   
-`sudo lsof -i :53` - if port 53 is not in use, this  
-command shouldn’t show any output.  
+You can check to see if port 53 is in use or not by running `sudo lsof -i :53` - if port 53 is not in use, this command shouldn’t show any output.  
 
 ## How to undo the changes
 
 Do you want to undo the changes made by following the instructions in  
 this article? This is what you must do.  
 
-**1.** Start by  
-editing   
-`/etc/systemd/resolved.conf` with a text editor (as  
-root), e.g. open it with Nano console text editor:  
+**1.** Start by editing `/etc/systemd/resolved.conf` with a text editor (as root), e.g. open it with Nano console text editor:  
 
 ```Plain
 sudo nano /etc/systemd/resolved.conf
 ```
 
-And comment out (add `#` in front of the  
-line)   
-`DNS=` and `DNSStubListener=no`, then save  
-the file. To save the file using Nano text editor,  
-press   
-`Ctrl + x`, then type `y` and  
-press   
-`Enter`.
+And comment out (add `#` in front of the line) `DNS=` and `DNSStubListener=no`, then save the file. To save the file using Nano text editor, press `Ctrl + x`, then type `y` and press `Enter`.
 
-**2**. Remove the `/etc/resolv.conf` symbolic  
-link:  
+**2**. Remove the `/etc/resolv.conf` symbolic link:  
 
 ```Plain
 sudo rm /etc/resolv.conf
