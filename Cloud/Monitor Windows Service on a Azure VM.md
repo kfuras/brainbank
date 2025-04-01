@@ -1,5 +1,4 @@
-# How to monitor  
-Windows Service in Azure VM  
+# How to monitor Windows Service in Azure VM  
 
 The requirement is to track a Windows Service running on a Virtual  
 Machine on Azure. When the service was stopped (or crashed), generate an  
@@ -18,25 +17,16 @@ VM Inventory and Change Tracking
 This feature monitors the Virtual Machine for changes in software,  
 files, windows registry and windows services.  
 
-1. On the desired Virtual Machine in the Azure Portal,  
-    select **Inventory** under **Configuration**  
-    **Management**  
-    .
-2. Select your **Log Analytics**  
-    **Workspace**  
-     and **Automation Account**, then  
-    click **Enable**.
+1. On the desired Virtual Machine in the Azure Portal, select **Inventory** under **Configuration** **Management**.
+2. Select your **Log Analytics** **Workspace** and **Automation Account**, then click **Enable**.
 
 [![](https://www.smcculloch.com/static/2dda83a6c1a9e72ffefffa52d297ad0a/fcda8/inventory.png)](https://www.smcculloch.com/static/2dda83a6c1a9e72ffefffa52d297ad0a/fcda8/inventory.png)
 
-Enable inventory and tracking in  
-Azure  
+Enable inventory and tracking in Azure  
 
-This will allow Azure to collect inventory on your virtual machine  
-and monitor for changes.  
+This will allow Azure to collect inventory on your virtual machine and monitor for changes.  
 
-> Note: on my account, it took a few hours for all windows services to  
-> show up.  
+> Note: on my account, it took a few hours for all windows services to show up.  
 
 When fully configured, the **Inventory** will show a tab  
 with all Windows Services and their current state:  

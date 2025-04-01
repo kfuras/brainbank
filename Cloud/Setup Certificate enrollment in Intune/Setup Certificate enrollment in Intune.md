@@ -173,38 +173,8 @@ certificates. Make sure you have got the correct certificate on the
 Wi-Fi profile. There are a few troubleshooting methods you can use  
 here:  
 
-- Export the profile from the device - run  `netsh wlan export profile` to export the saved profiles  
-    to XML, which you can then examine in a text editor.  
-    
-- If you’re constantly getting “Unable to connect because you need a  
-    certificate to sign in” - and you definitely have the certificate on the  
-    device - unassign the Wi-Fi profile from Intune, then once it has  
-    disappeared from the device, manually create a Wi-Fi profile - go  
-    through Control Panel (control.exe, not the new Settings), Network and  
-    Sharing Centre, Set up a new connection or network, Manually configure  
-    and edit the advanced settings. Play around with these until you get the  
-    connection to either work, or give a different error.  
-    
-- If you’ve made a profile manually on the device, once you’ve got  
-    that working, export it. Try and make the Intune profile have the same  
-    settings, you can then double check this by exporting the profile again  
-    once it’s applied to the device and comparing the two files. This helped  
-    me determine whether I was using the correct CA certificate for server  
-    validation.  
-    
-- Turn on auditing on the NPS server - in the command prompt,  
-    run   
-    `auditpol /set /subcategory:"Network Policy Server" /success:enable /failure:enable` and  
-    check the Security log in Event Viewer. You’ll want to filter this to  
-    just show the NPS related entries. Try connecting again and hopefully  
-    you’ll see something useful in the log.  
-    
-- Finally, more of a niche case - if you’re getting NPS to forward  
-    accounting packets to a filtering appliance as a means of identifying  
-    who is who, you can manipulate the attributes that NPS passes. In my  
-    case, we use Fortigate and it isn’t able to map a UPN to a user, it has  
-    to be given a sAMAccountName/Pre-Win2000 logon. By using the attribute  
-    manipulation we can replace the “@domain.tld” with a blank string. This  
-    will only work if the first portion of the UPN is the same as the  
-    sAMAccountName. This setting can be found within the Connection Request  
-    Policy, under “Attributes”.
+- Export the profile from the device - run `netsh wlan export profile` to export the saved profiles to XML, which you can then examine in a text editor.  
+- If you’re constantly getting “Unable to connect because you need a certificate to sign in” - and you definitely have the certificate on the device - unassign the Wi-Fi profile from Intune, then once it has disappeared from the device, manually create a Wi-Fi profile - go through Control Panel (control.exe, not the new Settings), Network and Sharing Centre, Set up a new connection or network, Manually configure and edit the advanced settings. Play around with these until you get the connection to either work, or give a different error. 
+- If you’ve made a profile manually on the device, once you’ve got that working, export it. Try and make the Intune profile have the same settings, you can then double check this by exporting the profile again once it’s applied to the device and comparing the two files. This helped me determine whether I was using the correct CA certificate for server validation. 
+- Turn on auditing on the NPS server - in the command prompt, run `auditpol /set /subcategory:"Network Policy Server" /success:enable /failure:enable` and check the Security log in Event Viewer. You’ll want to filter this to just show the NPS related entries. Try connecting again and hopefully you’ll see something useful in the log. 
+- Finally, more of a niche case - if you’re getting NPS to forward accounting packets to a filtering appliance as a means of identifying who is who, you can manipulate the attributes that NPS passes. In my case, we use Fortigate and it isn’t able to map a UPN to a user, it has to be given a sAMAccountName/Pre-Win2000 logon. By using the attribute manipulation we can replace the “@domain.tld” with a blank string. This will only work if the first portion of the UPN is the same as the sAMAccountName. This setting can be found within the Connection Request Policy, under “Attributes”.
