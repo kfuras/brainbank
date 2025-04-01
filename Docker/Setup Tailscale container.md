@@ -1,52 +1,14 @@
-## Enable TCP port 2375 for external connection to Docker  
-
-See this [issue](https://github.com/moby/moby/issues/25471).
-
-Docker best practise to [Control  
-and configure Docker with systemd  
-](https://docs.docker.com/engine/admin/systemd/\#/custom-docker-daemon-options).
-
-1. Create `daemon.json` file in `/etc/docker`:
-
-```Plain
-{"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}
-```
-
-1. Create `/etc/systemd/system/docker.service.d` folder
-2. Add `/etc/systemd/system/docker.service.d/override.conf`
-
-```Plain
-[Service]
-ExecStart=
-ExecStart=/usr/bin/dockerd
-```
-
-3. Reload the systemd daemon:
-
-```Plain
-sudo systemctl daemon-reload
-```
-
-4. Restart docker:
-
-```Plain
-sudo ystemctl restart docker.service
-```
-
-# Setup Tailscale container
-
 1. Login to [Tailscale](https://login.tailscale.com/admin/settings/keys) and create a Auth key  
 
 2. Configure the Docker VM to forward and masquerade traffic faccording to the tailscale setup guide: [Subnet routers and traffic relay nodes · Tailscale](https://tailscale.com/kb/1019/subnets/?tab=linux\#enable-ip-forwarding)
 
-```Plain
+```bash
 echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 ```
 
-1. Create tailscale.yaml file
+3. Create tailscale.yaml file
 
-```Plain
-version: '3.8'
+```yml
 services:
 
   tailscaled:
@@ -73,13 +35,13 @@ services:
 
 1. From the Docker VM run:
 
-```Plain
+```bash
 sudo docker exec tailscale tailscale up --authkey="<TS_AUTH_KEY>"
 ```
 
 From the Tailscale portal, If you don’t see your subnets listed under Machines, run: 
 
-```Plain
+```bash
 sudo docker exec tailscale tailscale up --accept-routes --advertise-routes=10.160.0.0/24,10.170.0.0/24
 ```
 
