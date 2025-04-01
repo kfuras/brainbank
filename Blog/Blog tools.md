@@ -1,7 +1,5 @@
 ## GPTs List
 
-Test
-
 [Topical Authority Planner](https://chat.openai.com/g/g-aicbERBku-topical-authority-for-seo-gpt-generator)
 
 is an absolute must for a new website or in case you pivot. Will also brainstorm new topics around subtopics with ease
