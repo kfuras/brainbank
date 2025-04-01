@@ -1,12 +1,8 @@
-  
-
 ## .bashrc
-
-  
 
 Set up .bashrc for kubectl completion by adding the following:
 
-```Plain
+```bash
 alias k='kubectl'
 
 source /etc/bash_completion # not needed on macos
@@ -15,29 +11,23 @@ source <(kubectl completion bash)
 
 complete -o default -F __start_kubectl k
 ```
-
-  
-
 ## .zshrc
 
 [https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#enable-shell-autocompletion](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#enable-shell-autocompletion)
 
 Set up .zshrc on Mac for kubectl completion by adding the following:
 
-```Plain
+```bash
 autoload -Uz compinit
 compinit
 alias k='kubectl'
 source <(kubectl completion zsh)
 ```
-
-  
-
 ## .vimrc
 
 This is a basic .vimrc for YAML editing:
 
-```Plain
+```bash
 " Ensure Vim uses filetype plugins
 filetype plugin on
 

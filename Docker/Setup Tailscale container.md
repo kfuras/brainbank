@@ -33,7 +33,7 @@ services:
       - TS_ROUTES=10.170.0.0/24,10.160.0.0/24
 ```
 
-1. From the Docker VM run:
+4. From the Docker VM run:
 
 ```bash
 sudo docker exec tailscale tailscale up --authkey="<TS_AUTH_KEY>"
@@ -45,4 +45,4 @@ From the Tailscale portal, If you don’t see your subnets listed under Machines
 sudo docker exec tailscale tailscale up --accept-routes --advertise-routes=10.160.0.0/24,10.170.0.0/24
 ```
 
-1. You may need to Approve routes from the portal under docker-host    ![GeneralLinuxattachmentsPasted_image_20230714123120](attachments/GeneralLinuxattachmentsPasted_image_20230714123120.png)
+5. You may need to Approve routes from the portal under docker-host    ![GeneralLinuxattachmentsPasted_image_20230714123120](attachments/GeneralLinuxattachmentsPasted_image_20230714123120.png)
