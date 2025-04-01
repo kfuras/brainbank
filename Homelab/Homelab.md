@@ -86,19 +86,19 @@ IdentitiesOnly yes ensures only the specified key is used, avoiding SSH confusio
 ### 3.1. Copy the entire key to clipboard (GitHub)
 
 - On **macOS**:
-    
-    ```Shell
-    pbcopy < ~/.ssh/id_ed25519_github.pub
-    ```
-    
+
+```Shell
+pbcopy < ~/.ssh/id_ed25519_github.pub
+```
+ 
 - On **Linux** (if using `xclip` or `wl-copy`):
-    
-    ```Shell
-    xclip -sel clip < ~/.ssh/id_ed25519_github.pub
-    # or
-    wl-copy < ~/.ssh/id_ed25519_github.pub
-    ```
-    
+
+```Shell
+xclip -sel clip < ~/.ssh/id_ed25519_github.pub
+# or
+wl-copy < ~/.ssh/id_ed25519_github.pub
+```
+
 - Or manually copy it from the terminal.
 
 ### 3. 2. Add the key on GitHub
@@ -232,21 +232,9 @@ Before you install Docker Engine for the first time on a new host machine, you n
 
 1. Set up Docker's `apt` repository.
     
-    ```Shell
-    # Add Docker's official GPG key:
-    sudo apt-get update
-    sudo apt-get install ca-certificates curl
-    sudo install -m 0755 -d /etc/apt/keyrings
-    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-    sudo chmod a+r /etc/apt/keyrings/docker.asc
-    
-    # Add the repository to Apt sources:
-    echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-      $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt-get update
-    ```
+ ```Shell
+
+ ```
     
 2. Install the Docker packages.
     
