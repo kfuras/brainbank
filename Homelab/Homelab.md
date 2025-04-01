@@ -1,13 +1,13 @@
 ## Examples of Branch Naming Patterns
 
-|   |   |
-|---|---|
-|Branch Name|When to use it|
-|`blog_image_generator`|Working on that tool|
-|`feature/blog_image_generator`|If you want to follow Git Flow-style naming|
-|`fix/image-wrap-bug`|Bug fix in an existing project|
-|`refactor/shared-utils`|Refactor or cleanup work|
-|`experiment/openai-image`|Quick test or lab idea|
+
+| Branch Name                    | When to use it                              |
+| ------------------------------ | ------------------------------------------- |
+| `blog_image_generator`         | Working on that tool                        |
+| `feature/blog_image_generator` | If you want to follow Git Flow-style naming |
+| `fix/image-wrap-bug`           | Bug fix in an existing project              |
+| `refactor/shared-utils`        | Refactor or cleanup work                    |
+| `experiment/openai-image`      | Quick test or lab idea                      |
 
 ## Your SSH Key Management Workflow
 
