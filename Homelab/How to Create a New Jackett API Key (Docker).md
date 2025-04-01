@@ -4,45 +4,46 @@ In my homelab setup, I'm running **Jackett in a Docker container**. The web UI d
 
 1. **SSH into your Docker server**:
 
-```
+```bash
 ssh docker-01
 ```
 
 2. **Locate Jackett’s configuration folder**  
 For me, it's located at:
   
-```  docker/media-stack/appdata/jackett/
+```bash
+docker/media-stack/appdata/jackett/
 ```
-    
+
 3. **Open the config file**:
-    
-    bash
-    
-    CopyEdit
-    
-    `vi ServerConfig.json`
-    
+
+```bash
+vi ServerConfig.json
+```
+
 4. **Delete the line containing the API key**  
-    Find and remove the line that starts with:
-    
-    json
-    
-    CopyEdit
-    
-    `"APIKey":`
-    
+Find and remove the line that starts with:
+
+```bash
+"APIKey":
+```
+
 5. **Save and exit** `vi`
-    
+
 6. **Restart the Jackett container**:
-    
-    bash
-    
-    CopyEdit
-    
-    `docker restart jackett`
-    
 
----
+```bash
+docker restart jackett
+# or
+docker compose down && docker compose up -d
+```
 
-✅ **Done!**  
+**Done!**  
+
 Next time Jackett starts, it will automatically generate a new API key and write it back to `ServerConfig.json`.
+
+### Tip
+
+After regenerating the key, update it in any connected services like:
+
+- Sonarr, and Radarr, etc.
