@@ -1,4 +1,4 @@
-## 🌿 Examples of Branch Naming Patterns
+## Examples of Branch Naming Patterns
 
 |   |   |
 |---|---|
@@ -9,11 +9,11 @@
 |`refactor/shared-utils`|Refactor or cleanup work|
 |`experiment/openai-image`|Quick test or lab idea|
 
-## ✅ Your SSH Key Management Workflow
+## Your SSH Key Management Workflow
 
 We'll organize your keys and SSH config like this:
 
-### 🗂 Directory Structure
+### Directory Structure
 
 ```Shell
 ~/.ssh/
@@ -26,11 +26,9 @@ We'll organize your keys and SSH config like this:
 ├── config                     # SSH config file
 ```
 
----
-
 ## 🛠 Step-by-Step Setup
 
-### 1️⃣ Generate One Key per Server
+### 1. Generate One Key per Server
 
 ```Shell
 ssh-keygen -t ed25519 -C "docker-01" -f ~/.ssh/id_ed25519_docker_01
@@ -41,9 +39,7 @@ ssh-keygen -t ed25519 -C "github"  -f ~/.ssh/id_ed25519_github_example
 
 Press Enter to skip a passphrase if you're okay with no prompt (or set one for extra security).
 
----
-
-### 2️⃣ Copy Public Keys to Your Servers
+### 2. Copy Public Keys to Your Servers
 
 ```Shell
 ssh-copy-id -i ~/.ssh/id_ed25519_docker_01.pub kaf@10.160.0.22
@@ -51,9 +47,7 @@ ssh-copy-id -i ~/.ssh/id_ed25519_pve_1.pub root@10.160.0.20
 ssh-copy-id -i ~/.ssh/id_ed25519_hetzner.pub root@your-vps-ip
 ```
 
----
-
-### 3️⃣ Create or Edit Your `~/.ssh/config`
+### 3. Create or Edit Your `~/.ssh/config`
 
 ```Shell
 vim ~/.ssh/config
@@ -88,11 +82,9 @@ Host github.com
   IdentitiesOnly yes
 ```
 
-🔐 IdentitiesOnly yes ensures only the specified key is used, avoiding SSH confusion.
+IdentitiesOnly yes ensures only the specified key is used, avoiding SSH confusion.
 
----
-
-### 3️⃣. 1️⃣ **Copy the entire key to clipboard (GitHub)**
+### 3.1. Copy the entire key to clipboard (GitHub)
 
 - On **macOS**:
     
@@ -110,7 +102,7 @@ Host github.com
     
 - Or manually copy it from the terminal.
 
-### 3️⃣. 2️⃣ **Add the key on GitHub**
+### 3. 2. Add the key on GitHub
 
 1. Go to [https://github.com/settings/keys](https://github.com/settings/keys)
 2. Click **“New SSH key”**
@@ -118,9 +110,7 @@ Host github.com
 4. **Paste the key** into the big text box
 5. Click **“Add SSH key”**
 
----
-
-### 3️⃣.3️⃣ **Test it (GitHub)**
+### 3.3. Test it (GitHub)
 
 After it’s added, run:
 
@@ -128,13 +118,13 @@ After it’s added, run:
 ssh -T git@github.com
 ```
 
-✅ Success:
+Success:
 
 ```Plain
 Hi kfuras! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-### 4️⃣ Test It
+### 4. Test It
 
 Now you can just:
 
@@ -146,9 +136,7 @@ ssh hetzner
 
 Or use `git@github.com` for GitHub actions.
 
----
-
-### 🧼 Optional Tips
+## Optional Tips
 
 - **Back up your keys** securely (encrypted USB or password manager with file support)
 - Add keys to `ssh-agent` if you want automatic login:
@@ -158,9 +146,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_docker_01
 ```
 
----
-
-### 🎯 Bonus: Check Which Key Was Used
+### Check Which Key Was Used
 
 Add `-v` to SSH to debug:
 
@@ -174,7 +160,7 @@ You'll see:
 Offering public key: ~/.ssh/id_ed25519_docker_01
 ```
 
-### 🎯 Bonus: Disable Password Prompt when Running `sudo` Commands
+### Disable Password Prompt when Running `sudo` Commands
 
 ```Shell
 sudo visudo
@@ -241,7 +227,7 @@ root	ALL=(ALL:ALL) ALL
 
 ## Setup Docker & Docker Compose
 
-## **1. Install using the** `**apt**` **repository**
+## 1. Install using the `apt` repository
 
 Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker `apt` repository. Afterward, you can install and update Docker from the repository.
 
@@ -275,8 +261,6 @@ Before you install Docker Engine for the first time on a new host machine, you n
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     ```
     
-    ---
-    
 3. Verify that the installation is successful by running the `hello-world` image:
     
     ```Shell
@@ -294,9 +278,7 @@ You have now successfully installed and started Docker Engine.
 > 
 > The `docker` user group exists but contains no users, which is why you’re required to use `sudo` to run Docker commands. Continue to [Linux postinstall](https://docs.docker.com/engine/install/linux-postinstall) to allow non-privileged users to run Docker commands and for other optional configuration steps.
 
----
-
-## **2. Manage Docker as a non-root user**
+## 2. Manage Docker as a non-root user
 
 The Docker daemon binds to a Unix socket, not a TCP port. By default it's the `root` user that owns the Unix socket, and other users can only access it using `sudo`. The Docker daemon always runs as the `root` user.
 
@@ -359,7 +341,7 @@ To create the `docker` group and add your user:
     ```
     
 
-## **[Configure Docker to start on boot with systemd](https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd)**
+## 2.1 (Optional) [Configure Docker to start on boot with systemd](https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot-with-systemd)
 
 Many modern Linux distributions use [systemd](https://systemd.io/) to manage which services start when the system boots. On Debian and Ubuntu, the Docker service starts on boot by default. To automatically start Docker and containerd on boot for other Linux distributions using systemd, run the following commands:
 
@@ -377,9 +359,7 @@ $ sudo systemctl disable containerd.service
 
 You can use systemd unit files to configure the Docker service on startup, for example to add an HTTP proxy, set a different directory or partition for the Docker runtime files, or other customizations. For an example, see [Configure the daemon to use a proxy](https://docs.docker.com/engine/daemon/proxy/#systemd-unit-file).
 
----
-
-## 3. (Optional) **Install Docker Compose Plugin**
+## 3. (Optional) Install Docker Compose Plugin
 
 Docker Compose is now included as a Docker plugin. To ensure it's installed:
 
@@ -404,9 +384,7 @@ Docker Compose is now included as a Docker plugin. To ensure it's installed:
 
 _For more information, refer to the Docker Compose installation guide._
 
----
-
-## 4. **Mount NFS Share via** `**fstab**`
+## 4. Mount NFS Share via `**fstab**`
 
 To automatically mount an NFS share on your Ubuntu system:
 
@@ -452,35 +430,31 @@ Replace `nfs_server_ip` with the IP address of your NFS server and `/exported/pa
 
 You should see your NFS share listed.
 
----
-
 By following these steps, you've installed Docker and Docker Compose on your Ubuntu system and configured an NFS share to mount automatically.
 
-## 🔥 Problem: Unraid Maps All NFS Users to `nobody` by Default
+## Problem: Unraid Maps All NFS Users to `nobody` by Default
 
 (If you’re unable to read or right data of the share, check out this section).
 
 That’s why you see `nobody:users` on everything from your Ubuntu side — Unraid is **squashing remote UIDs**.
 
-## ✅ Solution: Stop Squashing All Users
+## Solution: Stop Squashing All Users
 
 To allow your Ubuntu user `kaf` (UID 1000) to access the NFS share **as UID 1000**, you need to **remove** `**all_squash**` **and** `**anonuid**` **options**.
 
-### 🔧 Update the export line to:
+### Update the export line to:
 
 ```Plain
 "/mnt/user/data" -fsid=106,async,no_subtree_check *(rw,sec=sys,insecure)
 ```
 
-### ✅ What this does:
+### What this does:
 
 - Keeps NFS export readable and writable
 - **Preserves real UID/GID from the client**
 - Your Ubuntu user `kaf` (UID 1000) will access files as themselves
 
----
-
-## ✏️ Step-by-Step Fix
+## Step-by-Step Fix
 
 ### On Unraid:
 
@@ -502,8 +476,6 @@ vi /etc/exports
 exportfs -ra
 ```
 
----
-
 ### On Ubuntu (Client):
 
 No need to change `/etc/fstab` if it looks like this:
@@ -519,9 +491,7 @@ sudo umount /mnt/data
 sudo mount -a
 ```
 
----
-
-### 🔍 Verify It Works
+### Verify It Works
 
 Check ownership:
 
@@ -529,7 +499,7 @@ Check ownership:
 ls -l /mnt/data
 ```
 
-✅ Files should now appear as owned by your actual user (`kaf`) instead of `nobody`.
+Files should now appear as owned by your actual user (`kaf`) instead of `nobody`.
 
 Try creating a file:
 
@@ -538,9 +508,7 @@ touch /mnt/data/testfile
 ls -l /mnt/data/testfile
 ```
 
----
-
-## 🔁 Make It Persistent on Reboot
+## Make It Persistent on Reboot
 
 Since Unraid regenerates `/etc/exports`, use the **User Scripts plugin** to reapply the change on boot:
 
@@ -565,8 +533,6 @@ exportfs -ra
 ```
 
 Set it to run **"At Startup of Array"**
-
----
 
 ## Docker-compose
 
@@ -812,6 +778,7 @@ services:
       timeout: 5s
       retries: 3
 ```
+
 ### Unifi-stack
 
 docker-compose.yml
@@ -876,8 +843,6 @@ environment:
 
 > PLEX_TRANSCODE_DIR is required — without it, Plex won’t use /transcode.
 
----
-
 ### 2. Restart Plex and play a video that forces transcoding
 
 - Use a mobile app or unsupported format (e.g., subtitles, 4K -> 1080p)
@@ -908,8 +873,6 @@ Or use:
 docker exec -it plex watch -n 1 du -sh /transcode
 ```
 
----
-
 ### 4. Check the mount type (should say `tmpfs`)
 
 ```Shell
@@ -922,15 +885,11 @@ Expected output:
 tmpfs on /transcode type tmpfs (rw,size=3145728k)
 ```
 
----
-
-### 🧯 Nothing showing up?
+### Nothing showing up?
 
 - Check if the stream is actually transcoding
 - Double-check that `PLEX_TRANSCODE_DIR=/transcode` is set
 - Restart the container after editing `docker-compose.yml`
-
-  
 
 ## `.gitignore` (place in each stack folder)
 
@@ -968,8 +927,6 @@ mongodb/
 *.log
 ```
 
----
-
 ## Best Practices
 
 - Keep `.env` out of Git to protect secrets/API keys.
@@ -1005,14 +962,8 @@ rsync -avz --progress -e ssh \
   ~/docker/unifi-stack/appdata/
 ```
 
----
-
 ## After the copy, fix ownership:
 
 ```Shell
 sudo chown -R kaf:kaf ~/docker/
 ```
-
-  
-
-[[Management Stack Setup Guide (Prometheus + Grafana + Uptime Kuma)]]

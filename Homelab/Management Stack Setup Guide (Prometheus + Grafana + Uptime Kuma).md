@@ -145,8 +145,6 @@ docker network create unifi-net
 docker compose up -d
 ```
 
----
-
 ## Troubleshooting
 
 ### Grafana - Permission Denied
@@ -184,8 +182,6 @@ Then restart:
 ```Shell
 docker compose down && docker compose up -d
 ```
-
----
 
 ## Next Steps
 
