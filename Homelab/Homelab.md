@@ -231,25 +231,32 @@ root	ALL=(ALL:ALL) ALL
 Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker `apt` repository. Afterward, you can install and update Docker from the repository.
 
 1. Set up Docker's `apt` repository.
-    
- ```Shell
 
+ ```Shell
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
  ```
-    
-2. Install the Docker packages.
-    
-    Latest Specific version
-    
-    ---
-    
-    To install the latest version, run:
-    
-    ```Shell
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    ```
-    
+
+2. 2. Install the Docker packages.
+
+To install the latest version, run:
+  
+```Shell
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
 3. Verify that the installation is successful by running the `hello-world` image:
-    
     ```Shell
     sudo docker run hello-world
     ```
