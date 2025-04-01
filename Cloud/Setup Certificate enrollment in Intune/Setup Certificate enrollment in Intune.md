@@ -163,13 +163,13 @@ Fill out the fields as below - leave the defaults except for:
     Windows 10 device to auto select the certificate, and as they’re on the  
     cert - they can go in here too.  
     
-    ![[attachments/CloudattachmentsPasted_image_20221116120736.png]]
+    ![CloudattachmentsPasted_image_20221116120736](attachments/CloudattachmentsPasted_image_20221116120736.png)
     
 
 If you want to assign a domain name as a SAN to the certificate  
 enrollment:  
 
-![[attachments/CloudattachmentsPasted_image_20221116121259.png]]
+![CloudattachmentsPasted_image_20221116121259](attachments/CloudattachmentsPasted_image_20221116121259.png)
 
 Assign the  
 profile to the appropriate groups (you can target a device if you want  
@@ -228,7 +228,7 @@ on. It requires there to already be a suitable certificate on the user’s
 Personal store - when nobody is logged on, presumably it’s expecting  
 SYSTEM to have a certificate.  
 
-![[attachments/CloudattachmentsPasted_image_20221116120938.png]]
+![CloudattachmentsPasted_image_20221116120938](attachments/CloudattachmentsPasted_image_20221116120938.png)
 
 ## Testing Your Device
 

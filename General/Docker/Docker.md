@@ -99,4 +99,4 @@ sudo docker exec tailscale tailscale up --accept-routes --advertise-routes=10.16
 
 1. You may need to Approve routes from the portal under docker-host
     
-    ![[attachments/GeneralLinuxattachmentsPasted_image_20230714123120.png]]
+    ![GeneralLinuxattachmentsPasted_image_20230714123120](attachments/GeneralLinuxattachmentsPasted_image_20230714123120.png)
