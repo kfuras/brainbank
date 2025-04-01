@@ -1,6 +1,4 @@
-## Using Dev Containers Across Repos with `devconnect`
-
-If you're managing multiple projects in Dev Containers (like `lab`, `homelab`, `python`), jumping between them quickly is key.
+If you're managing multiple projects in Dev Containers, jumping between them quickly is key.
 
 This guide shows you how to:
 
@@ -113,18 +111,32 @@ Let’s say you have:
 
 Now, in any terminal window:
 
-```
-devconnect lab # Connects to the lab container  devconnect homelab # Switches to the homelab container  devconnect python # Same again, super clean
+```bash
+devconnect lab
+# Connects to the lab container
+
+devconnect homelab
+# Switches to the homelab container
+
+devconnect python
+# Same again, super clean
+
 ```
 
----
-
-## ✅ Optional: Use `fzf` for selection
+## Optional: Use `fzf` for selection
 
 If you have many containers, you can make `devconnect` interactive:
 
-bash
+```bash
+devconnect() {
+  container=$(docker ps --format "{{.Names}}" | fzf)
 
-CopyEdit
+  if [ -z "$container" ]; then
+    echo "❌ No container selected"
+    return 1
+  fi
 
-`devconnect() {   container=$(docker ps --format "{{.Names}}" | fzf)    if [ -z "$container" ]; then     echo "❌ No container selected"     return 1   fi    docker exec -it "$container" bash }`
+  docker exec -it "$container" bash
+}
+
+```

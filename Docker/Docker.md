@@ -1,7 +1,3 @@
-## CPU quota flag
-
-[Don’t Build Docker Apps Without This Flag - DEV Community](https://dev.to/code42cate/dont-build-docker-apps-without-this-flag-48kg)
-
 ## Enable TCP port 2375 for external connection to Docker  
 
 See this [issue](https://github.com/moby/moby/issues/25471).
