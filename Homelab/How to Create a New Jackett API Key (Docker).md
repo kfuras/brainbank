@@ -35,7 +35,7 @@ Find and remove the line that starts with:
 ```bash
 docker restart jackett
 # or
-docker compose down && docker compose up -d
+docker compose restart jackett
 ```
 
 **Done!**  
@@ -46,4 +46,4 @@ Next time Jackett starts, it will automatically generate a new API key and write
 
 After regenerating the key, update it in any connected services like:
 
-- Sonarr, and Radarr, etc.
+- Sonarr, Radarr, etc.
