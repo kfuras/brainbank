@@ -10,4 +10,5 @@
 4. Search for the Policy in question, the Reference Id will be visible  
     from here  
     
-    ![[attachments/CloudattachmentsPasted_image_20230428103416.png]]
+    ![CloudattachmentsPasted_image_20230428103416](attachments/CloudattachmentsPasted_image_20230428103416.png)
+     d
