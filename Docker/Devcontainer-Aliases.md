@@ -68,49 +68,54 @@ devshell() {
 
 Reload your shell:
 
-`source ~/.zshrc # or source ~/.bashrc`
+```bash
+source ~/.zshrc # or source ~/.bashrc
+```
 
----
-
-## 📦 2. Name Your Dev Container per Project
+## 2. Name Your Dev Container per Project
 
 To make your container discoverable by `devconnect`, **name it uniquely** inside each repo.
 
 ### For `.devcontainer/devcontainer.json`:
 
-json
-
-CopyEdit
-
-`{   "name": "lab",   "image": "mcr.microsoft.com/devcontainers/python:3.11",   ... }`
+```bash
+{
+  "name": "lab",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  ...
+}
+```
 
 This will name the container something like:
 
-CopyEdit
-
-`lab-devcontainer-123abc`
+```
+lab-devcontainer-123abc
+```
 
 Which means `devconnect lab` will find it.
 
----
-
-## 📂 3. Repo Structure Example
+## 3. Repo Structure Example
 
 Let’s say you have:
 
-pgsql
-
-CopyEdit
-
-`~/code/ ├── homelab/ │   └── .devcontainer/ │       └── devcontainer.json (name = "homelab") ├── lab/ │   └── .devcontainer/ │       └── devcontainer.json (name = "lab") ├── python/ │   └── .devcontainer/ │       └── devcontainer.json (name = "python")`
+```bash
+~/code/
+├── homelab/
+│   └── .devcontainer/
+│       └── devcontainer.json (name = "homelab")
+├── lab/
+│   └── .devcontainer/
+│       └── devcontainer.json (name = "lab")
+├── python/
+│   └── .devcontainer/
+│       └── devcontainer.json (name = "python")
+```
 
 Now, in any terminal window:
 
-bash
-
-CopyEdit
-
-`devconnect lab # Connects to the lab container  devconnect homelab # Switches to the homelab container  devconnect python # Same again, super clean`
+```
+devconnect lab # Connects to the lab container  devconnect homelab # Switches to the homelab container  devconnect python # Same again, super clean
+```
 
 ---
 
