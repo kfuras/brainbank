@@ -11,6 +11,7 @@ source <(kubectl completion bash)
 
 complete -o default -F __start_kubectl k
 ```
+
 ## .zshrc
 
 [https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#enable-shell-autocompletion](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#enable-shell-autocompletion)
@@ -23,6 +24,7 @@ compinit
 alias k='kubectl'
 source <(kubectl completion zsh)
 ```
+
 ## .vimrc
 
 This is a basic .vimrc for YAML editing:
@@ -52,8 +54,6 @@ syntax on
 " Set backspace so it acts more intuitively
 set backspace=indent,eol,start
 ```
-
-  
 
 ## Helpful links
 
