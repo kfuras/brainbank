@@ -67,7 +67,9 @@ devshell() {
 Reload your shell:
 
 ```bash
-source ~/.zshrc # or source ~/.bashrc
+source ~/.zshrc 
+# or 
+source ~/.bashrc
 ```
 
 ## 2. Name Your Dev Container per Project
