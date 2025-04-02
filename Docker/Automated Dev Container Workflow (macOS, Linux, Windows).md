@@ -44,7 +44,7 @@ Creates a new Dev Container setup in the current folder. Supported types:
 
 - `python`, `node`, `docker`, `bash`, `terraform`, `azure`, `kubernetes`, `docs`
 
-```powershell
+```bash
 devsetup python
 ```
 
@@ -52,7 +52,7 @@ devsetup python
 
 Connects to a running container with name matching your project:
 
-```powershell
+```bash
 devconnect lab
 devconnect homelab
 ```
@@ -60,3 +60,62 @@ devconnect homelab
 ### `devshell <project>`
 
 Same as `devconnect`, but opens with `zsh` (if supported):
+
+```powershell
+devshell blog-image-generator
+```
+
+### Example Folder Layout
+
+```powershell
+~/code/
+├── lab/                    # GitHub repo: reusable scripts and labs
+├── dotfiles/              # GitHub repo: bootstrap config
+├── blog-image-generator/  # Project folder with `.devcontainer/`
+```
+
+Each project will contain:
+
+```bash
+.devcontainer/
+└── devcontainer.json
+```
+
+## ip: Automatic Container Naming
+
+Each devcontainer will be named like:
+
+```bash
+blog-image-generator-devcontainer-abc123
+```
+So `devconnect blog-image-generator` just works.
+
+### Bonus: Use `fzf` to choose a container
+
+```bash
+devconnect() {
+  container=$(docker ps --format "{{.Names}}" | fzf)
+  if [ -z "$container" ]; then
+    echo "❌ No container selected"
+    return 1
+  fi
+  docker exec -it "$container" bash
+}
+```
+
+## Want to use this setup?
+
+Just run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kfuras/dotfiles/main/bootstrap.sh | bash
+```
+
+Or on Windows:
+
+```powershell
+irm https://raw.githubusercontent.com/kfuras/dotfiles/main/bootstrap.ps1 | iex
+```
+
+This will set everything up in one shot.
+
