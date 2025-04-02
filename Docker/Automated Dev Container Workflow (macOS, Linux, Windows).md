@@ -108,7 +108,7 @@ Each project will contain:
 └── devcontainer.json
 ```
 
-## ip: Automatic Container Naming
+## Automatic Container Naming
 
 Each devcontainer will be named like:
 
