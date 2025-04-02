@@ -31,25 +31,13 @@ From inside your repo:
 
 You can omit the `--type` to default to `python`.
 
-  
-
----
-
-  
-
 ## Adding Support for More Languages
 
-  
-
 To add more languages or stack types:
-
-  
 
 1. Open the script and locate the `case "$PROJECT_TYPE" in` block
 
 2. Add a new case like this:
-
-  
 
 ```bash
 
@@ -67,11 +55,7 @@ EOF
 
 ```
 
-  
-
 3. Run the script with your new type:
-
-  
 
 ```bash
 
@@ -79,23 +63,11 @@ EOF
 
 ```
 
-  
-
 This will generate a `devcontainer.json` using the base image and optional tools for Go.
-
-  
-
----
-
-  
 
 ## Shared Configuration
 
-  
-
 All generated containers include:
-
-  
 
 - Basic VS Code extensions:
 
@@ -109,29 +81,15 @@ All generated containers include:
 
 - Font folder mount from host for custom fonts (optional)
 
-  
-
----
-
-  
-
 ## Output
 
-  
-
 Each run will generate or overwrite:
-
-  
 
 - `.devcontainer/devcontainer.json`
 
 - `requirements.txt` (for Python, if missing)
 
-  
-
 You can add this to version control:
-
-  
 
 ```bash
 
@@ -141,26 +99,12 @@ git commit -m "chore: add devcontainer for <type>"
 
 ```
 
-  
-
----
-
-  
-
 ## File
 
-  
-
 Save the script as `add-devcontainer.sh` and make it executable:
-
-  
 
 ```bash
 
 chmod +x add-devcontainer.sh
 
 ```
-
-  
-
-Ready to be reused across all your projects.
