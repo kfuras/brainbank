@@ -22,25 +22,26 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlightin
 To activate these completions, add the following to your .zshrc:
 
 ```bash
-**if type brew &>/dev/null; then**
+if type brew &>/dev/null; then
 
-    **FPATH=$(brew --prefix)/share/zsh-completions:$FPATH**
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
-  
+    autoload -Uz compinit
+    compinit
 
-    **autoload -Uz compinit**
-
-    **compinit**
-
-  **fi**
+fi
 ```
 
 You may also need to force rebuild `zcompdump`:
 
+```bash
   rm -f ~/.zcompdump; compinit
+```
 
-Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+Additionally, if you receive `zsh compinit: insecure directories` warnings when attempting
 to load these completions, you may need to run these commands:
 
+```bash
   chmod go-w '/opt/homebrew/share'
   chmod -R go-w '/opt/homebrew/share/zsh'
+```
