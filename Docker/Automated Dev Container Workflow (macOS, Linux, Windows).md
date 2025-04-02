@@ -48,6 +48,33 @@ Creates a new Dev Container setup in the current folder. Supported types:
 devsetup python
 ```
 
+### Start using VS Code
+
+1. Open the project in VS Code:   
+
+```bash
+code .
+```
+When prompted, choose **“Reopen in Container”**
+
+> Or manually via Command Palette → “Dev Containers: Reopen in Container”
+
+This will spin up the container defined by `.devcontainer/devcontainer.json`.
+
+### Start via CLI
+
+If you have the `devcontainer` CLI installed (`npm install -g @devcontainers/cli`):
+
+```bash
+devcontainer up --workspace-folder .
+```
+
+Or use your helper if you add a `devbuild` function to `~/.devaliases`:
+
+```bash
+devbuild python
+```
+
 ### `devconnect <project>`
 
 Connects to a running container with name matching your project:
