@@ -24,7 +24,9 @@ This can cause confusing errors during `git push` or `git pull --rebase`.
 
 ### 1. **Rename the folder or files manually**
 
-`mv blog_image_generator blog-image-generator`
+```bash
+mv blog_image_generator blog-image-generator
+```
 
 ### 2. **Stage both the deletions and the new files**
 
@@ -37,13 +39,18 @@ git add .   # Stages all new files and folder structure
 
 ### 3. **Commit the rename**
 
-`git commit -m "refactor: rename blog_image_generator to blog-image-generator"`
+```bash
+git commit -m "refactor: rename blog_image_generator to blog-image-generator"
+```
 
 ### 4. **Rebase if needed**
 
 If your push fails because the remote has changes:
 
-`git pull origin main --rebase git push`
+```bash
+git pull origin main --rebase 
+git push
+```
 
 ## Bonus: Watch for `.gitignore` mismatches
 
@@ -53,11 +60,17 @@ If you rename a folder (e.g., `generated_images/` → `generated-images/`) but f
 
 1. Update `.gitignore` to match the new name:
 
-`generated-images/`
+```gitignore
+generated-images/
+```
 
 2. Remove the now-tracked folder (but keep files locally):
 
-`git rm -r --cached generated-images/ git commit -m "chore: fix .gitignore to match renamed folder" git push`
+```bash
+git rm -r --cached generated-images/ 
+git commit -m "chore: fix .gitignore to match renamed folder" 
+git push
+```
 
 
 ## Summary
