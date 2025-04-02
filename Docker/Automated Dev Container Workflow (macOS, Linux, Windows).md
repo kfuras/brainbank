@@ -61,13 +61,13 @@ devconnect homelab
 
 Same as `devconnect`, but opens with `zsh` (if supported):
 
-```powershell
+```bash
 devshell blog-image-generator
 ```
 
 ### Example Folder Layout
 
-```powershell
+```bash
 ~/code/
 ├── lab/                    # GitHub repo: reusable scripts and labs
 ├── dotfiles/              # GitHub repo: bootstrap config
