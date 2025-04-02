@@ -29,4 +29,25 @@ ls "/Applications/Rancher Desktop.app/Contents/Resources/resources/darwin/bin/"
 ```
 You should see `docker`, `kubectl`, and other tools in there.
 
-If yes, add this to your `~/.zshrc` (top of file):
+If yes, add this to your `~/.zshrc`:
+
+```bash
+export PATH="/Applications/Rancher Desktop.app/Contents/Resources/resources/darwin/bin:$PATH"
+```
+
+Then reload:
+
+```bash
+source ~/.zshrc
+```
+
+Test again, it should add them back into place.
+
+```bash
+which docker
+docker version
+
+which kubectl
+kubectl version --client
+
+```
