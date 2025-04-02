@@ -30,7 +30,10 @@ This can cause confusing errors during `git push` or `git pull --rebase`.
 
 This will tell Git what’s changed:
 
-`git add -u      # Stages deleted (removed) files git add .       # Stages all new files and folder structure`
+```bash
+git add -u  # Stages deleted (removed) files 
+git add .   # Stages all new files and folder structure
+```
 
 ### 3. **Commit the rename**
 
