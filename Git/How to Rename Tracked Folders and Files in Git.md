@@ -13,11 +13,15 @@ This can cause confusing errors during `git push` or `git pull --rebase`.
 
 - `git push` fails with a message like:
 
-`Updates were rejected because the remote contains work that you do not have locally.`
+```bash
+Updates were rejected because the remote contains work that you do not have locally.
+```
 
 - `git pull` fails with:    
 
-`error: cannot pull with rebase: You have unstaged changes.`
+```bash
+error: cannot pull with rebase: You have unstaged changes.
+```
 
 
 ## Steps to Safely Rename Folders and Files in Git
