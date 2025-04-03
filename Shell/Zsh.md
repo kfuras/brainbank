@@ -41,6 +41,7 @@ Then reload:
 source ~/.zshrc
 ```
 
+### Example `.zshrc`
 ```bash
 # dotfiles/.zshrc
 
