@@ -40,3 +40,38 @@ Then reload:
 ```bash
 source ~/.zshrc
 ```
+
+```bash
+# dotfiles/.zshrc
+
+# History settings
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Editor
+export EDITOR=nvim
+
+# Enable command auto suggestions (if zsh-autosuggestions is installed)
+if [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Enable completions (if zsh-completions is installed)
+if [ -f /opt/homebrew/share/zsh-completions/zsh-completions.zsh ]; then
+  fpath+=("/opt/homebrew/share/zsh-completions")
+  autoload -Uz compinit && compinit
+fi
+
+# Starship prompt
+eval "$(starship init zsh)"
+
+# Custom aliases (optional)
+alias k=kubectl
+alias tf="terraform"
+alias gs="git status"
+
+# Source aliases if present
+[ -f ~/.devaliases ] && source ~/.devaliases
+
+```
