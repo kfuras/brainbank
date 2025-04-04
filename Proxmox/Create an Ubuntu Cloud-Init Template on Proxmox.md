@@ -26,7 +26,7 @@ You should see `ubuntu-24.04-server-cloudimg-amd64.img` listed in the director
 Create a VM with a unique identifier `501` (or any other available ID):
 
 ```bash
-qm create 9000 --name "ubuntu-cloud-init-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
+qm create 501 --name "ubuntu-cloud-init-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
 ```
 - `501` — Unique identifier for the VM.
 - `--name` — Name of the virtual machine.
