@@ -26,10 +26,10 @@ wget -P /var/lib/vz/template/iso/ \
 Then verify:
 
 ```bash
-ls /var/lib/vz/template/iso/
+ls /var/lib/vz/template/iso/ | grep -i ubuntu-
 ```
 
-You should see the `.img` file listed.
+You should see the `ubuntu-24.04-server-cloudimg-amd64.img` file listed.
 
 ## Step 2: Create a Base VM Template
 
