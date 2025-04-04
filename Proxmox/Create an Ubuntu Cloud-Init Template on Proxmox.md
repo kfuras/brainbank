@@ -71,19 +71,28 @@ qm set 501 --ide2 local-zfs:cloudinit
 
 ### 3.1 Generate a dedicated key for your Proxmox Ubuntu template
 
+On your admin machine, run the following:
 ```bash
 ssh-keygen -t ed25519 -C "ubuntu-template" -f ~/.ssh/id_ed25519_ubuntu_template
 ```
 This will generate:
 
-- `~/.ssh/id_ed25519_pve_template` → the **private key**    
-- `~/.ssh/id_ed25519_pve_template.pub` → the **public key**
+- `~/.ssh/id_ed25519_pve_template` (private)    
+- `~/.ssh/id_ed25519_ubuntu_template.pub` (public)
 
 ### 3.2 Verify the key exists
 
 ```bash
+ls ~/.ssh/id_ed25519_pve_template*
 ```
 You should see both the .pub and private key files.
+
+### 3.3 Copy the **public key** to your Proxmox server
+
+```bash
+pbcopy < ~/.ssh/id_ed25519_pve_template.pub
+```
+
 Configure Cloud-init settings such as user, password, and SSH key:
 
 ```bash
