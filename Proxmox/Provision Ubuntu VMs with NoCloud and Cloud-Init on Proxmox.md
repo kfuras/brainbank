@@ -93,10 +93,10 @@ This creates:
 pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 ```
 
-### 3.3 Create `user-data` (cloud-init)
+### 3.3 Create `user-data` and `meta-data` (cloud-init)
 
 `ssh` into your Proxmox server and create the following files:
-user-data``
+`user-data`
 ```yml
 #cloud-config
 hostname: ubuntu-template
@@ -115,6 +115,7 @@ runcmd:
   - systemctl start qemu-guest-agent
 ```
 
+`meta-data`
 ```yml
 instance-id: ubuntu-template
 local-hostname: ubuntu-template
@@ -195,6 +196,9 @@ You now have a clean, scriptable, and SSH-ready NoCloud Ubuntu template:
 - Works with `qm clone` and `qm start`
 
 - Guest agent enabled out of the box
+
+
+
 
 
 You should see `ubuntu-24.04-server-cloudimg-amd64.img` listed in the directory.
