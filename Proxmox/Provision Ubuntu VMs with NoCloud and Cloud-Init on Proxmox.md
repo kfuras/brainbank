@@ -95,7 +95,14 @@ pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 
 ### 3.3 Create `user-data` and `meta-data` (cloud-init)
 
-`ssh` into your Proxmox server and create the following files:
+`ssh` into your Proxmox server, and navigate to a working directory:
+
+```bash
+mkdir -p /root/cloudinit/ubuntu-template
+cd /root/cloudinit/ubuntu-template
+```
+
+ Create the following files:
 `user-data`
 ```yml
 #cloud-config
