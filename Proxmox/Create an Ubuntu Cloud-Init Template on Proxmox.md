@@ -62,10 +62,10 @@ qm set 501 --boot c --bootdisk scsi0
 Add a Cloud-init disk to the VM:
 
 ```bash
-qm set 9000 --ide2 local-lvm:cloudinit
+qm set 501 --ide2 local-zfs:cloudinit
 ```
 - `--ide2` — Specifies that the disk will be attached as an IDE device.
-- `local-lvm:cloudinit` — Specifies the storage and type of the disk.
+- `local-zfs:cloudinit` — Specifies the storage and type of the disk.
 
 ## Step 3: Configure Cloud-init
 
