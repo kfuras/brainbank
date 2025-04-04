@@ -1,4 +1,4 @@
-
+For the latest Ubuntu Cloud images, you can check [Ubuntu Cloud Images](https://cloud-images.ubuntu.com/).
 ## Step 1: Prepare the Ubuntu Cloud-init Image
 
 ### 1.1 Download the Ubuntu Cloud Image
@@ -21,7 +21,7 @@ You should see `ubuntu-24.04-server-cloudimg-amd64.img` listed in the director
 
 ## Step 2: Create a Virtual Machine Template in Proxmox
 
-### 2.1. Create a new Virtual Machine (VM):
+### 2.1. Create a new Virtual Machine (VM)
 
 Create a VM with a unique identifier `501` (or any other available ID):
 
@@ -41,23 +41,23 @@ Use `qm importdisk` to import the downloaded image into local storage:
 ```bash
 qm importdisk 501 /var/lib/vz/template/iso/ubuntu-24.04-server-cloudimg-amd64.img local-zfs
 ```
-- `9000` — ID of the virtual machine.
+- `501` — ID of the virtual machine.
 - Path to the Ubuntu Cloud-init image file.
 - `local-zfs` — Name of the storage in Proxmox.
 
-### 2.4 Configure the primary disk and VM settings:
+### 2.4 Configure the primary disk and VM settings
 
 Set up the disk using the `scsi` type and configure the boot options:
 
 ```bash
-qm set 501 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-9000-disk-0
+qm set 501 --scsihw virtio-scsi-pci --scsi0 local-zfs:vm-501-disk-0
 qm set 501 --boot c --bootdisk scsi0
 ```
 - `--scsihw` — Specifies the SCSI controller type (using `virtio-scsi-pci`).
 - `--scsi0` — Configures the primary disk of the VM.
 - `--boot c --bootdisk scsi0` — Sets the VM to boot from the primary disk.
 
-### 2.5. Add a Cloud-init disk:
+### 2.5. Add a Cloud-init disk
 
 Add a Cloud-init disk to the VM:
 
@@ -91,20 +91,26 @@ qm template 501
 
 ## Step 5: Use the Template to Create New Virtual Machines
 
-### 5.1 Clone the template to create a new VM:
+### 5.1 Clone the template to create a new VM
 
 Create a new VM from the template:
 
 ```bash
-qm clone 9000 201 --name "new-ubuntu-vm"
+qm clone 501 105 --name "new-ubuntu-vm"
 ```
-- `` — Unique ID for the new VM.
+- `105` — Unique ID for the new VM.
 - `--name` — Name of the new virtual machine.
 
-### 5.2 Configure the new VM (if needed):
+### 5.2 Configure the new VM
 
 You can modify settings for the new VM, such as memory size and the number of cores:
 
 ```bash
-qm set 201 --memory 4096 --cores 4
+qm set 105 --memory 4096 --cores 4
+```
+
+### 5.3 Start the new VM
+
+```bash
+qm start 105
 ```
