@@ -98,7 +98,7 @@ pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 Run the `qm set` command to inject the SSH key into the Cloud-init-enabled VM template:
 
 ```bash
-qm set 501 --sshkey ''
+qm set 501 --sshkey 'Your_pasted_key_here...'
 ```
 - Replace `501` with your template `VM ID`
 
