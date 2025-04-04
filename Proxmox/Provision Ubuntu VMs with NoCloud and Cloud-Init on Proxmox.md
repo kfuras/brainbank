@@ -149,12 +149,15 @@ cloud-localds nocloud.iso user-data meta-data
 ```bash
 mv nocloud.iso /var/lib/vz/template/iso/
 ```
+> Use `local-lvm` or `local-zfs` if your Proxmox setup differs. 
+> You can check available storage with: `pvesm status`
 
 ### 3.6 Attach ISO to VM
 
 ```bash
 qm set 501 --ide2 local:iso/nocloud.iso,media=cdrom
 ```
+> Replace `local` if your ISO storage is named differently — use `pvesm status` to check.
 
 ## Step 4: Convert to a Template
 
