@@ -136,7 +136,7 @@ Make sure you have `cloud-image-utils` installed:
 apt update
 apt install cloud-image-utils
 ```
-This gives you access to the `cloud-localds` command you need.
+> This gives you access to the `cloud-localds` command you need.
 
 Then, generate the iso:
 
