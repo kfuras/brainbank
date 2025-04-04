@@ -60,6 +60,33 @@ qm set 501 \
 
 ### 2.4 Attach Cloud-init disk
 
+```bash
+qm set 501 --ide2 local-zfs:cloudinit
+```
+
+### 2.5 Enable the qemu-guest-agent
+
+```bash
+qm set 501 --agent enabled=1
+```
+
+## Step 3: Create Your NoCloud ISO
+
+I'll generate the `nocloud.iso` from my **Mac**, but any admin workstation will do.
+
+### 3.1 Generate a dedicated SSH key
+
+```bash
+ssh-keygen -t ed25519 -C "ubuntu-template" -f ~/.ssh/id_ed25519_ubuntu_template
+```
+
+This creates:
+
+- `~/.ssh/id_ed25519_ubuntu_template`
+
+- `~/.ssh/id_ed25519_ubuntu_template.pub`
+
+### 3.2 Create `user-data` (cloud-init)
 
 
 
