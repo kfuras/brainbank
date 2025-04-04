@@ -86,5 +86,25 @@ qm set 9000 --sshkey "$(cat ~/.ssh/id_rsa.pub)"
 Convert the VM to a template:
 
 ```bash
-qm template 
+qm template 501
+```
+
+## Step 5: Use the Template to Create New Virtual Machines
+
+### 5.1 Clone the template to create a new VM:
+
+Create a new VM from the template:
+
+```bash
+qm clone 9000 201 --name "new-ubuntu-vm"
+```
+- `` — Unique ID for the new VM.
+- `--name` — Name of the new virtual machine.
+
+### 5.2 Configure the new VM (if needed):
+
+You can modify settings for the new VM, such as memory size and the number of cores:
+
+```bash
+qm set 201 --memory 4096 --cores 4
 ```
