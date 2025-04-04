@@ -185,16 +185,21 @@ qm set 105 --memory 4096 --cores 4
 qm start 105
 ```
 
+![](attachments/Pasted%20image%2020250404205807.png)
+> Remember to update the new IP address of the server in your `~/.ssh/config` file.
+
 To easily SSH into new machines, add this to your `~/.ssh/config`:
 
 ```
 Host ubuntu
-  HostName ip_of_your_vm
+  HostName 10.160.0.64
   User ubuntu
   IdentityFile ~/.ssh/id_ed25519_ubuntu_template
 ```
 
 Now you can type `ssh ubuntu` to connect to your newly created VM.
+
+![](attachments/Pasted%20image%2020250404210159.png)
 
 ## Final Thoughts
 
