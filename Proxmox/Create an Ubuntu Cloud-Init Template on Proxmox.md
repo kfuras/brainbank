@@ -83,15 +83,25 @@ This will generate:
 ### 3.2 Verify the key exists
 
 ```bash
-ls ~/.ssh/id_ed25519_pve_template*
+ls ~/.ssh/id_ed25519_ubuntu_template*
 ```
 You should see both the .pub and private key files.
 
 ### 3.3 Copy the **public key** to your Proxmox server
 
 ```bash
-pbcopy < ~/.ssh/id_ed25519_pve_template.pub
+pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 ```
+
+### 3.4 Once SSH’d into your Proxmox server
+
+Run the `qm set` command to inject the SSH key into the Cloud-init-enabled VM template:
+
+```bash
+qm set 501 --sshkey 'Your_pasted_key_here...'
+```
+
+
 
 Configure Cloud-init settings such as user, password, and SSH key:
 
