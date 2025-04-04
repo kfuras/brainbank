@@ -88,8 +88,45 @@ This creates:
 
 ### 3.2 Create `user-data` (cloud-init)
 
+`ssh` into your Proxmox server and create the following files:
 
+```yml
+#cloud-config
+hostname: ubuntu-template
+users:
+  - name: ubuntu
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3Nz... ubuntu-template
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+package_update: true
+package_upgrade: true
+packages:
+  - qemu-guest-agent
+runcmd:
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+```
 
+```yml
+instance-id: ubuntu-template
+local-hostname: ubuntu-template
+```
+
+### 3.4 Generate the ISO (on Proxmox)
+
+Make sure you have `cloud-image-utils` installed:
+
+```bash
+apt update
+apt install cloud-image-utils
+```
+
+Then, generate the iso:
+
+```bash
+cloud-localds nocloud.iso user-data meta-data
+```
 ### 1.2 Verify that the file was downloaded successfully
 
 Make sure the file is in the correct directory:
