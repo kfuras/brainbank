@@ -201,8 +201,6 @@ Now you can type `ssh ubuntu` to connect to your newly created VM.
 
 ![](attachments/Pasted%20image%2020250404210159.png)
 
-## Final Thoughts
-
 You now have a clean, and SSH-ready NoCloud Ubuntu template:
 
 - Ideal for hands-off provisioning
