@@ -7,25 +7,27 @@ If you're running a homelab or managing infrastructure with [Proxmox VE](https:/
 In this post, you'll learn how to:
 
 - Use NoCloud for provisioning Ubuntu Server 24.04 VMs
-    
+
 - Inject your SSH key and default user
-    
+
 - Enable qemu-guest-agent
-    
+
 - Automate everything from macOS (or your admin box)
-    
 
 Let's get started.
+
 ## Step 1: Prepare the Ubuntu Cloud-init Image
 
 ### 1.1 Download the Ubuntu Cloud Image
 
-To download the Ubuntu 24.04 image, use `wget` with the appropriate URL and save it to the `/var/lib/vz/template/iso/` directory:
+From your Proxmox server:
+
+Download the Ubuntu 24.04 image, using `wget`, and save it to the `/var/lib/vz/template/iso/` directory:
 
 ```bash
 wget -P /var/lib/vz/template/iso/ https://cloud-images.ubuntu.com/daily/server/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img
 ```
-- `-P` — option tells wget to save the file in the specified directory
+- The `-P` — option tells wget to save the file in the specified directory
 
 ### 1.2 Verify that the file was downloaded successfully
 
