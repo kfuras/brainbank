@@ -19,7 +19,8 @@ For the latest Ubuntu Cloud images, you can check [Ubuntu Cloud Images](https:/
 From your **Proxmox server**, download the latest Ubuntu 24.04 cloud image:
 
 ```bash
-wget -P /var/lib/vz/template/iso/ https://cloud-images.ubuntu.com/daily/server/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img
+wget -P /var/lib/vz/template/iso/ \
+  https://cloud-images.ubuntu.com/daily/server/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img
 ```
 
 Then verify:
@@ -85,6 +86,7 @@ This creates:
 - `~/.ssh/id_ed25519_ubuntu_template`
 
 - `~/.ssh/id_ed25519_ubuntu_template.pub`
+
 
 ### 3.2 Create `user-data` (cloud-init)
 
@@ -160,7 +162,22 @@ qm clone 501 105 --name "ubuntu-vm01"
 qm set 105 --memory 4096 --cores 4
 ```
 
-### 5.3 Start it
+### 5.3 Start up the VM
+
+```bash
+qm start 105
+```
+
+To easily SSH into new machines, add this to your `~/.ssh/config`:
+
+```
+Host ubuntu
+  HostName ip_of_your_vm
+  User ubuntu
+  IdentityFile ~/.ssh/id_ed25519_ubuntu_template
+```
+
+Now you can type `ssh ubuntu` to connect to your newly created VM
 
 ```
 
