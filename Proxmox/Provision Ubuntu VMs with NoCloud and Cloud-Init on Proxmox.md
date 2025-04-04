@@ -87,24 +87,23 @@ This creates:
 
 - `~/.ssh/id_ed25519_ubuntu_template.pub`
 
-### 3.2 Copy the public key to Proxmox
+### 3.2 Copy the public key
 
 ```bash
-scp ~/.ssh/id_ed25519_ubuntu_template.pub root@10.160.0.20:/root/
+pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 ```
 
-Once in Proxmox
 ### 3.3 Create `user-data` (cloud-init)
 
 `ssh` into your Proxmox server and create the following files:
-
+user-data``
 ```yml
 #cloud-config
 hostname: ubuntu-template
 users:
   - name: ubuntu
     ssh-authorized-keys:
-      - ssh-ed25519 AAAAC3Nz... ubuntu-template
+      - paste_the_public_key_you_copied_earlier
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
 package_update: true
