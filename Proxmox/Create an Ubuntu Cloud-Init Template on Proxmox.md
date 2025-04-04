@@ -72,9 +72,9 @@ qm set 501 --ide2 local-zfs:cloudinit
 Configure Cloud-init settings such as user, password, and SSH key:
 
 ```bash
-qm set 9000 --ipconfig0 ip=dhcp
-qm set 9000 --ciuser ubuntu --cipassword 'yourpassword'
-qm set 9000 --sshkey "$(cat ~/.ssh/id_rsa.pub)"
+qm set 501 --ipconfig0 ip=dhcp
+qm set 501 --ciuser ubuntu --cipassword 'yourpassword'
+qm set 501 --sshkey "$(cat ~/.ssh/id_rsa.pub)"
 ```
 - `--ipconfig0 ip=dhcp` — Configures the IP to be assigned via DHCP.
 - `--ciuser` — Specifies the Cloud-init username.
