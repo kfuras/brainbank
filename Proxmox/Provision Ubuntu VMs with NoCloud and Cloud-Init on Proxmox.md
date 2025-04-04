@@ -153,7 +153,7 @@ mv nocloud.iso /var/lib/vz/template/iso/
 ### 3.6 Attach ISO to VM
 
 ```bash
-qm set 501 --cdrom local-zfs:iso/nocloud.iso
+qm set 501 --ide2 local:iso/nocloud.iso,media=cdrom
 ```
 
 ## Step 4: Convert to a Template
