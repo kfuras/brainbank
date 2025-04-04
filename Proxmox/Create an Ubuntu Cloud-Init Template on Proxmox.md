@@ -28,18 +28,63 @@ Create a VM with a unique identifier `501` (or any other available ID):
 ```bash
 qm create 9000 --name "ubuntu-cloud-init-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
 ```
-- `9000` — Unique identifier for the VM.
+- `501` — Unique identifier for the VM.
 - `--name` — Name of the virtual machine.
 - `--memory` — Amount of RAM in megabytes.
 - `--cores` — Number of CPU cores.
 - `--net0` — Network card configuration (uses `virtio` with bridge `vmbr0`).
 
-#### [](https://dev.to/minerninja/create-an-ubuntu-cloud-init-template-on-proxmox-the-command-line-guide-5b61#23-import-the-downloaded-image-into-the-proxmox-storage)2.3 Import the downloaded image into the Proxmox storage
+### 2.3 Import the downloaded image into the Proxmox storage
 
 Use `qm importdisk` to import the downloaded image into local storage:
-```bash
-qm importdisk 501 /var/lib/vz/template/iso/ubuntu-24.04-server-cloudimg-amd64.img local-lvm
-```
 
+```bash
+qm importdisk 501 /var/lib/vz/template/iso/ubuntu-24.04-server-cloudimg-amd64.img local-zfs
 ```
+- `9000` — ID of the virtual machine.
+- Path to the Ubuntu Cloud-init image file.
+- `local-zfs` — Name of the storage in Proxmox.
+
+### 2.4 Configure the primary disk and VM settings:
+
+Set up the disk using the `scsi` type and configure the boot options:
+
+```bash
+qm set 501 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-9000-disk-0
+qm set 501 --boot c --bootdisk scsi0
+```
+- `--scsihw` — Specifies the SCSI controller type (using `virtio-scsi-pci`).
+- `--scsi0` — Configures the primary disk of the VM.
+- `--boot c --bootdisk scsi0` — Sets the VM to boot from the primary disk.
+
+### 2.5. Add a Cloud-init disk:
+
+Add a Cloud-init disk to the VM:
+
+```bash
+qm set 9000 --ide2 local-lvm:cloudinit
+```
+- `--ide2` — Specifies that the disk will be attached as an IDE device.
+- `local-lvm:cloudinit` — Specifies the storage and type of the disk.
+
+## Step 3: Configure Cloud-init
+
+Configure Cloud-init settings such as user, password, and SSH key:
+
+```bash
+qm set 9000 --ipconfig0 ip=dhcp
+qm set 9000 --ciuser ubuntu --cipassword 'yourpassword'
+qm set 9000 --sshkey "$(cat ~/.ssh/id_rsa.pub)"
+```
+- `--ipconfig0 ip=dhcp` — Configures the IP to be assigned via DHCP.
+- `--ciuser` — Specifies the Cloud-init username.
+- `--cipassword` — Sets the password for the user (replace `'yourpassword'` with your desired password).
+- `--sshkey` — Adds an SSH key for the user (the contents of the public key from `~/.ssh/id_rsa.pub`).
+
+## Step 4: Save the Template
+
+Convert the VM to a template:
+
+```bash
+qm template 
 ```
