@@ -127,6 +127,43 @@ Then, generate the iso:
 ```bash
 cloud-localds nocloud.iso user-data meta-data
 ```
+
+### 3.5 Move ISO to 
+
+```bash
+mv nocloud.iso /var/lib/vz/template/iso/
+```
+
+### 3.6 Attach ISO to VM
+
+```bash
+qm set 501 --cdrom local-zfs:iso/nocloud.iso
+```
+
+## Step 4: Convert to a Template
+
+```bash
+qm template 501
+```
+
+## Step 5: Clone and Deploy
+
+### 5.1 Clone the template
+
+```bash
+qm clone 501 105 --name "ubuntu-vm01"
+```
+
+### 5.2 Customize the new VM
+
+```bash
+qm set 105 --memory 4096 --cores 4
+```
+
+### 5.3 Start it
+
+```
+
 ### 1.2 Verify that the file was downloaded successfully
 
 Make sure the file is in the correct directory:
