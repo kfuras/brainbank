@@ -14,21 +14,54 @@ In this post, you'll learn how to:
 Let’s walk through the whole process—from image preparation to SSH-ready VM deployment.
 For the latest Ubuntu Cloud images, you can check [Ubuntu Cloud Images](https://cloud-images.ubuntu.com/).
 
-## Download the Ubuntu Cloud Image
+## Step 1: Download the Ubuntu Cloud Image
 
 From your **Proxmox server**, download the latest Ubuntu 24.04 cloud image:
-## Step 1: Prepare the Ubuntu Cloud-init Image
-
-### 1.1 Download the Ubuntu Cloud Image
-
-From your Proxmox server:
-
-Download the Ubuntu 24.04 image, using `wget`, and save it to the `/var/lib/vz/template/iso/` directory:
 
 ```bash
 wget -P /var/lib/vz/template/iso/ https://cloud-images.ubuntu.com/daily/server/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img
 ```
-- The `-P` — option tells wget to save the file in the specified directory
+
+Then verify:
+
+```bash
+ls /var/lib/vz/template/iso/
+```
+
+You should see the `.img` file listed.
+
+## Step 2: Create a Base VM Template
+
+### 2.1 Create the VM
+
+```bash
+qm create 501 \
+  --name ubuntu-cloud-init-template \
+  --memory 2048 \
+  --cores 2 \
+  --net0 virtio,bridge=vmbr0
+```
+
+### 2.2 Import the disk
+
+```bash
+qm importdisk 501 /var/lib/vz/template/iso/ubuntu-24.04-server-cloudimg-amd64.img local-zfs
+```
+
+### 2.3 Set the VM disk and boot options
+
+```bash
+qm set 501 \
+  --scsihw virtio-scsi-pci \
+  --scsi0 local-zfs:vm-501-disk-0 \
+  --boot c \
+  --bootdisk scsi0
+```
+
+### 2.4 Attach Cloud-init disk
+
+
+
 
 ### 1.2 Verify that the file was downloaded successfully
 
