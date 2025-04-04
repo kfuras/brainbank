@@ -1,4 +1,21 @@
+Use NoCloud and Cloud-init to provision Ubuntu VMs with SSH access, qemu-guest-agent, and more using Proxmox.
+
 For the latest Ubuntu Cloud images, you can check [Ubuntu Cloud Images](https://cloud-images.ubuntu.com/).
+
+If you're running a homelab or managing infrastructure with [Proxmox VE](https://www.proxmox.com/), automating VM creation with cloud-init can save you time and ensure consistency across deployments.
+
+In this post, you'll learn how to:
+
+- Use NoCloud for provisioning Ubuntu Server 24.04 VMs
+    
+- Inject your SSH key and default user
+    
+- Enable qemu-guest-agent
+    
+- Automate everything from macOS (or your admin box)
+    
+
+Let's get started.
 ## Step 1: Prepare the Ubuntu Cloud-init Image
 
 ### 1.1 Download the Ubuntu Cloud Image
