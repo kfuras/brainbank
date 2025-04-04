@@ -33,7 +33,8 @@ We'll organize your keys and SSH config like this:
 ssh-keygen -t ed25519 -C "docker-01" -f ~/.ssh/id_ed25519_docker_01
 ssh-keygen -t ed25519 -C "pve-1" -f ~/.ssh/id_ed25519_pve_1
 ssh-keygen -t ed25519 -C "hetzner" -f ~/.ssh/id_ed25519_hetzner_example
-ssh-keygen -t ed25519 -C "github"  -f ~/.ssh/id_ed25519_github_example
+ssh-keygen -t ed25519 -C "github"  -f ~/.ssh/id_ed25519_github
+ssh-keygen -t ed25519 -C "ubuntu-template"  -f ~/.ssh/id_ed25519_ubuntu_template
 ```
 
 Press Enter to skip a passphrase if you're okay with no prompt (or set one for extra security).
