@@ -87,8 +87,14 @@ This creates:
 
 - `~/.ssh/id_ed25519_ubuntu_template.pub`
 
+### 3.2 Copy the public key to Proxmox
 
-### 3.2 Create `user-data` (cloud-init)
+```bash
+scp ~/.ssh/id_ed25519_ubuntu_template.pub root@10.160.0.20:/root/
+```
+
+Once in Proxmox
+### 3.3 Create `user-data` (cloud-init)
 
 `ssh` into your Proxmox server and create the following files:
 
@@ -177,17 +183,21 @@ Host ubuntu
   IdentityFile ~/.ssh/id_ed25519_ubuntu_template
 ```
 
-Now you can type `ssh ubuntu` to connect to your newly created VM
+Now you can type `ssh ubuntu` to connect to your newly created VM.
 
-```
+## Final Thoughts
 
-### 1.2 Verify that the file was downloaded successfully
+You now have a clean, scriptable, and SSH-ready NoCloud Ubuntu template:
 
-Make sure the file is in the correct directory:
+- Ideal for hands-off provisioning
 
-```bash
-ls /var/lib/vz/template/iso/
-```
+- Cloud-init friendly
+
+- Works with `qm clone` and `qm start`
+
+- Guest agent enabled out of the box
+
+
 You should see `ubuntu-24.04-server-cloudimg-amd64.img` listed in the directory.
 
 ## Step 2: Create a Virtual Machine Template in Proxmox
