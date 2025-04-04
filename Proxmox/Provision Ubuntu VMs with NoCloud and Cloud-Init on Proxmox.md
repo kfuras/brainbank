@@ -71,9 +71,9 @@ qm set 501 --ide2 local-zfs:cloudinit
 qm set 501 --agent enabled=1
 ```
 
-## Step 3: Create Your NoCloud ISO
+## Step 3: Generate SSH Keys & NoCloud ISO
 
-I'll generate the `nocloud.iso` from my **Mac**, but any admin workstation will do.
+I'll generate the `ssh-keys` from my **Mac**, but any admin workstation will do.
 
 ### 3.1 Generate a dedicated SSH key
 
@@ -136,6 +136,7 @@ Make sure you have `cloud-image-utils` installed:
 apt update
 apt install cloud-image-utils
 ```
+This gives you access to the `cloud-localds` command you need.
 
 Then, generate the iso:
 
@@ -143,7 +144,7 @@ Then, generate the iso:
 cloud-localds nocloud.iso user-data meta-data
 ```
 
-### 3.5 Move ISO to 
+### 3.5 Move ISO to `/var/lib/vz/template/iso/`
 
 ```bash
 mv nocloud.iso /var/lib/vz/template/iso/
