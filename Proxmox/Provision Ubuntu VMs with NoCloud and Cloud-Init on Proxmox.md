@@ -47,6 +47,8 @@ qm create 501 \
 
 ### 2.2 Import the disk
 
+Next, import the Ubuntu cloud image as a virtual disk into your Proxmox storage (in this case, `local-zfs`).
+
 ```bash
 qm importdisk 501 /var/lib/vz/template/iso/ubuntu-24.04-server-cloudimg-amd64.img local-zfs
 ```
@@ -97,7 +99,9 @@ pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 
 ### 3.3 Create `user-data` and `meta-data` (cloud-init)
 
-`ssh` into your Proxmox server, and navigate to a working directory:
+`ssh` into your Proxmox server, and navigate to a working directory.
+
+we’ll create the cloud-init configuration files that tell the VM how to initialize on first boot—things like hostname, users, and packages. The `user-data` file contains most of the logic, while `meta-data` just defines identity info for the instance.
 
 ```bash
 mkdir -p /root/cloudinit/ubuntu-template
@@ -151,7 +155,7 @@ cloud-localds nocloud.iso user-data meta-data
 ```bash
 mv nocloud.iso /var/lib/vz/template/iso/
 ```
-> Use `local-lvm` or `local-zfs` if your Proxmox setup differs. 
+> If your Proxmox storage uses `local-lvm` instead of `local-zfs`, adjust the path accordingly.
 > You can check available storage with: `pvesm status`
 
 ### 3.6 Attach ISO to VM
@@ -162,6 +166,8 @@ qm set 501 --ide2 local:iso/nocloud.iso,media=cdrom
 > Replace `local` if your ISO storage is named differently — use `pvesm status` to check.
 
 ## Step 4: Convert to a Template
+
+Once your base VM is configured, convert it to a Proxmox template so you can quickly clone new VMs from it.
 
 ```bash
 qm template 501
