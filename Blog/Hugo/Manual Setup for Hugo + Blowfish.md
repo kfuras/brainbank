@@ -23,6 +23,13 @@ git init
 git submodule add -b main https://github.com/nunocoracao/blowfish.git themes/blowfish
 ```
 
+### 3.1. Create Config folder
+
+```bash
+mkdir -p config/_default
+```
+
+
 ## Step 4. Set Up Theme Configuration Files
 
 ### 4.1. Remove the Default Configuration File
