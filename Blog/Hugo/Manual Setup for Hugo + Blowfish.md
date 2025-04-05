@@ -25,10 +25,25 @@ git submodule add -b main https://github.com/nunocoracao/blowfish.git themes/blo
 
 ## Step 4. Set Up Theme Configuration Files
 
-### 4.1 Remove the Default Configuration File
+### 4.1. Remove the Default Configuration File
 
 Hugo generates a default `hugo.toml` file in your project's root directory. For Blowfish, it's recommended to delete this file to avoid conflicts:
 
 ```bash
 rm hugo.toml
+```
+
+### 4.2. Backup the `config/_default/` directory
+
+```bash
+cp -r themes/blowfish/config/_default config/_default_backup
+```
+
+
+### 4.3. Copy Blowfish's Example Configuration Files
+
+Blowfish provides example configuration files that you can use as a starting point. Copy these files into your site's `config/_default/` directory:
+
+```bash
+cp -r themes/blowfish/exampleSite/config/_default/* config/_default/
 ```
