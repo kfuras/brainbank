@@ -1,4 +1,4 @@
-Creating repeatable and secure VM templates in your Proxmox environment is a game-changer for homelabbers and sysadmins alike. 
+2Creating repeatable and secure VM templates in your Proxmox environment is a game-changer for homelabbers and sysadmins alike. 
 
 In this post, you'll learn how to:
 
