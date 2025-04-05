@@ -35,6 +35,8 @@ You should see the `ubuntu-24.04-server-cloudimg-amd64.img` file listed.
 
 ### 2.1 Create the VM
 
+First, create the base VM that will serve as your Ubuntu template. We're using ID `501`, but you can choose any unused ID.
+
 ```bash
 qm create 501 \
   --name ubuntu-cloud-init-template \
