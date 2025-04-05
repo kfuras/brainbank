@@ -1,4 +1,4 @@
-Creating repeatable and secure VM templates in your Proxmox environment is a game-changer for homelabbers and sysadmins alike. 
+Creating repeatable, secure VM templates in your Proxmox environment is a game-changer for both homelabbers and sysadmins.
 
 In this post, you'll learn how to:
 
@@ -209,10 +209,12 @@ Now you can type `ssh ubuntu` to connect to your newly created VM.
 
 ![](attachments/Pasted%20image%2020250404210159.png)
 
-You now have a clean, and SSH-ready NoCloud Ubuntu template:
+Nou now have a clean, reusable Ubuntu VM template that’s:
 
-- Ideal for hands-off provisioning
+- Ready for hands-off, repeatable provisioning
 
-- Cloud-init friendly
+- Fully compatible with cloud-init
 
-- Guest agent enabled out of the box
+- Pre-configured with the Proxmox guest agent
+
+_Found this helpful?_ Check out more Tech tutorials or follow my [GitHub](https://github.com/kfuras) for ongoing homelab content.
