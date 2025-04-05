@@ -1,6 +1,6 @@
-Creating repeatable, secure VM templates in your Proxmox environment is a game-changer for both homelabbers and sysadmins.
+I’ve found that creating repeatable and secure VM templates in Proxmox is a game-changer—whether I’m working in a client environment or refining my homelab setup.
 
-In this post, you'll learn how to:
+In this post, I’ll show you how to:
 
 - Use the NoCloud datasource with Ubuntu Cloud Images
 
@@ -99,7 +99,8 @@ pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 
 ### 3.3 Create `user-data` and `meta-data` (cloud-init)
 
-`ssh` into your Proxmox server, and navigate to a working directory.
+SSH into your Proxmox server and navigate to a working directory.  
+I’ll create the cloud-init configuration files that tell the VM how to initialize on first boot…
 
 we’ll create the cloud-init configuration files that tell the VM how to initialize on first boot—things like hostname, users, and packages. The `user-data` file contains most of the logic, while `meta-data` just defines identity info for the instance.
 
@@ -217,4 +218,4 @@ Nou now have a clean, reusable Ubuntu VM template that’s:
 
 - Pre-configured with the Proxmox guest agent
 
-_Found this helpful?_ Check out more Tech tutorials or follow my [GitHub](https://github.com/kfuras) for ongoing homelab content.
+_Found this helpful?_ Check out more tech tutorials or follow my [GitHub](https://github.com/kfuras) where I share homelab setups, automation tools, and real-world projects from my work as an IT consultant.
