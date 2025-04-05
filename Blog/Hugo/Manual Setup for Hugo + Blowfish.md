@@ -18,15 +18,17 @@ hugo new site ~/code/blog
 Install Blowfish as a Git submodule:
 
 ```bash
-cd mywebsite
+cd ~/code/blog
 git init
 git submodule add -b main https://github.com/nunocoracao/blowfish.git themes/blowfish
-
 ```
-## Step 1: Create a New Hugo Site
+
+## Step 4. Set Up Theme Configuration Files
+
+### 4.1 Remove the Default Configuration File
+
+Hugo generates a default `hugo.toml` file in your project's root directory. For Blowfish, it's recommended to delete this file to avoid conflicts:
+
 ```bash
-hugo new site my-blog cd my-blog
+rm hugo.toml
 ```
-
-
-> This creates the base directory structure (`content/`, `layouts/`, `static/`, etc.).
