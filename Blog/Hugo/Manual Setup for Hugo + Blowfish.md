@@ -23,7 +23,7 @@ git init
 git submodule add -b main https://github.com/nunocoracao/blowfish.git themes/blowfish
 ```
 
-### 3.1. Create Config folder
+### 3.1. Create Config folders
 
 ```bash
 mkdir -p config/_default
@@ -39,13 +39,6 @@ Hugo generates a default `hugo.toml` file in your project's root directory. For 
 ```bash
 rm hugo.toml
 ```
-
-### 4.2. Backup the `config/_default/` directory
-
-```bash
-cp -r themes/blowfish/config/_default config/_default_backup
-```
-
 
 ### 4.3. Copy Blowfish's Example Configuration Files
 
