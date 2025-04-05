@@ -3,11 +3,8 @@ I’ve found that creating repeatable and secure VM templates in Proxmox is a ga
 In this post, I’ll show you how to:
 
 - Use the NoCloud datasource with Ubuntu Cloud Images
-
 - Inject SSH keys from your admin box
-
 - Enable and verify the Proxmox guest agent
-
 - Clone pre-configured VMs using Proxmox CLI
 
 
@@ -88,7 +85,6 @@ ssh-keygen -t ed25519 -C "ubuntu-template" -f ~/.ssh/id_ed25519_ubuntu_template
 This creates:
 
 - `~/.ssh/id_ed25519_ubuntu_template`
-
 - `~/.ssh/id_ed25519_ubuntu_template.pub`
 
 ### 3.2 Copy the public key
@@ -99,10 +95,7 @@ pbcopy < ~/.ssh/id_ed25519_ubuntu_template.pub
 
 ### 3.3 Create `user-data` and `meta-data` (cloud-init)
 
-SSH into your Proxmox server and navigate to a working directory.  
-I’ll create the cloud-init configuration files that tell the VM how to initialize on first boot…
-
-we’ll create the cloud-init configuration files that tell the VM how to initialize on first boot—things like hostname, users, and packages. The `user-data` file contains most of the logic, while `meta-data` just defines identity info for the instance.
+I’ll create the cloud-init configuration files that tell the VM how to initialize on first boot—things like hostname, users, and packages. The `user-data` file contains most of the logic, while `meta-data` just defines identity info for the instance.
 
 ```bash
 mkdir -p /root/cloudinit/ubuntu-template
@@ -210,12 +203,12 @@ Now you can type `ssh ubuntu` to connect to your newly created VM.
 
 ![](attachments/Pasted%20image%2020250404210159.png)
 
-Nou now have a clean, reusable Ubuntu VM template that’s:
+I use this setup regularly when provisioning dev servers or test environments—it saves a ton of time.
 
-- Ready for hands-off, repeatable provisioning
+You now have a clean, and SSH-ready NoCloud Ubuntu template:
 
-- Fully compatible with cloud-init
-
-- Pre-configured with the Proxmox guest agent
+- Ideal for hands-off provisioning  
+- Cloud-init friendly  
+- Guest agent enabled out of the box
 
 _Found this helpful?_ Check out more tech tutorials or follow my [GitHub](https://github.com/kfuras) where I share homelab setups, automation tools, and real-world projects from my work as an IT consultant.
