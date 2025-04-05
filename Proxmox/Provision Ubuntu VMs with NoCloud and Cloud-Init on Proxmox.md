@@ -205,10 +205,10 @@ Now you can type `ssh ubuntu` to connect to your newly created VM.
 
 I use this setup regularly when provisioning dev servers or test environments—it saves a ton of time.
 
-You now have a clean, and SSH-ready NoCloud Ubuntu template:
+You now have a clean and SSH-ready NoCloud Ubuntu template:
 
 - Ideal for hands-off provisioning  
 - Cloud-init friendly  
 - Guest agent enabled out of the box
 
-_Found this helpful?_ Check out more tech tutorials or follow my [GitHub](https://github.com/kfuras) where I share homelab setups, automation tools, and real-world projects from my work as an IT consultant.
+_Found this helpful?_ Check out more tech tutorials or follow my [GitHub](https://github.com/kfuras), where I share homelab setups, automation tools, and real-world projects from my day-to-day work as an IT consultant.
