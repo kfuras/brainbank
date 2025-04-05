@@ -47,3 +47,21 @@ Blowfish provides example configuration files that you can use as a starting poi
 ```bash
 cp -r themes/blowfish/exampleSite/config/_default/* config/_default/
 ```
+
+### 4.4. Remove the unwanted languages
+
+```bash
+rm languages.it.toml anguages.ja.toml languages.zh-cn.toml menus.it.toml menus.ja.toml menus.zh-cn.toml
+```
+
+You should be left with a folder like this:
+
+```bash
+config/_default/
+├─ hugo.toml
+├─ languages.en.toml
+├─ markup.toml
+├─ menus.en.toml
+├─ module.toml  # if you installed using Hugo Modules
+└─ params.toml
+```
