@@ -7,7 +7,7 @@ This guide explains how I migrated image links in my Markdown blog posts from **
 
 Change Markdown from:
 
-```bash
+```markdown
  ![](images/example.png)
 ```
 
@@ -21,7 +21,7 @@ Into:
 
 ### 1. Rename All `images/` Folders to `img/`
 
-In your Hugo project root:
+In your Wordpress export root:
 
 ```bash
 find output/posts/* -type d -name "images" -execdir mv {} img \;
@@ -40,22 +40,25 @@ This matches **all** alt texts, not just `![]`.
 
 ### 3. Convert Inline Images to Reference-Style (Python Script)
 
-I used this [Python script](#) (see full version below) to scan all `index.md` files under `output/posts`, find `![alt](img/...)` patterns, and convert them into reference-style Markdown.
+I used this **Python script** (see full version below) to scan all `index.md` files under `output/posts`, find `![alt](img/...)` patterns, and convert them into reference-style Markdown.
 
 **Example input:**
 
-```bash
+```markdown
 ![Diagram](img/example.png)
 ```
 
 **Converted to:**
 
-```bash
-![Diagram][example]  ...  [example]: img/example.png
+```markdown
+![Diagram][example]  
+...  
+[example]: img/example.png
 ```
 
 ### Run the script:
 
+In your ``Wordpress export`` root:
 ```bash
 python3 convert_inline_images.py
 ```
