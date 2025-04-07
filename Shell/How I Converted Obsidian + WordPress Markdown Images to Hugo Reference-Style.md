@@ -4,13 +4,14 @@ This guide explains how I migrated image links in my Markdown blog posts from **
 ### Goal
 
 - Move all images into a local `img/` folder inside each post directory
-- Change Markdown from:
+
+Change Markdown from:
 
 ```bash
  ![](images/example.png)
 ```
 
-into:
+Into:
 
 ```markdown
 ![][example]  
@@ -22,15 +23,18 @@ into:
 
 In your Hugo project root:
 
-`find output/posts/* -type d -name "images" -execdir mv {} img \;`
+```bash
+find output/posts/* -type d -name "images" -execdir mv {} img \;
+```
 
 This changes all `images/` subfolders to `img/` while keeping them in place.
 
 ### 2. Update Markdown Image Paths
 
 We replace all `](images/...)` with `](img/...)` using `sed`:
-
-`find output/posts -name "index.md" -exec sed -i '' 's#](images/#](img/#g' {} +`
+```bash
+find output/posts -name "index.md" -exec sed -i '' 's#](images/#](img/#g' {} +
+```
 
 This matches **all** alt texts, not just `![]`.
 
@@ -43,7 +47,6 @@ I used this [Python script](#) (see full version below) to scan all `index.md` f
 ```bash
 ![Diagram](img/example.png)
 ```
-
 
 **Converted to:**
 
