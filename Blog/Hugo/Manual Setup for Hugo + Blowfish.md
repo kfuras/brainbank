@@ -31,7 +31,7 @@ mkdir -p config/_default
 
 ## Step 4. Set Up Theme Configuration Files
 
-### 4.1. Remove the Default Configuration File (Don´t delete yet)
+### 4.1. Remove the Default Configuration File
 
 Hugo generates a default `hugo.toml` file in your project's root directory. For Blowfish, it's recommended to delete this file to avoid conflicts:
 
@@ -59,12 +59,16 @@ config/_default/
 └─ params.toml
 ```
 
-### 4.3. Brung up the website
+### 4.3. Bring up the website
 
 Head into the `hugo.toml` file and uncomment the line:
 
 ```yml
 # theme = "blowfish" # UNCOMMENT THIS LINE
 ```
-> This will enable the webserver and you can see changes done in real time.
 
+Then:
+```bash
+hugo server
+```
+> This will enable the webserver and you can see changes done in real time.
