@@ -90,8 +90,7 @@ Then paste your CSS:
 If you're using TOML:
 
 ```toml
-[params]
-  customCSS = ["css/custom.css"]
+customCSS = ["css/custom.css"]
 ```
 
 If you're using YAML:
