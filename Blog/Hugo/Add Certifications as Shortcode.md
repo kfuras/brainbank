@@ -93,7 +93,6 @@ If you're using TOML:
 [params]
   customCSS = ["css/custom.css"]
 ```
-`[params]   customCSS = ["css/custom.css"]`
 
 If you're using YAML:
 
