@@ -80,3 +80,18 @@ In your `assets/css/custom.css`:
   background-color: #005f99;
 }
 ```
+
+### Benefits
+
+- **Central management** of all links
+- Easy to **reuse and update** across your site
+- Built-in **UTM tracking** + optional **GA event tagging**
+- Hugo shortcodes keep your Markdown **clean and maintainable**
+- Works perfectly with the **Blowfish** theme
+
+### Improvements
+
+- Add icons to the buttons
+- Track clicks with GA4    
+- Open links in a modal or popup
+- Support different styles (primary, ghost, dark, etc.)
