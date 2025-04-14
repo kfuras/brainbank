@@ -44,6 +44,13 @@ Create this file:  `layouts/partials/article/faq-content.html`
 {{ end }}
 
 ```
+
+Copy `single.html` from `themes/blowfish/layouts/_default` to `layouts/_default`
+Create the `default` folder if missing.
+
+```bash
+cp themes/blowfish/layouts/_default/single.html layouts/_default/single.html 
+```
 Then include it in `single.html` or your post template **below `.Content`**:
 
 ```html
