@@ -49,10 +49,47 @@ Copy `single.html` from `themes/blowfish/layouts/_default` to `layouts/_default`
 Create the `default` folder if missing.
 
 ```bash
+mkdir -p layouts/_default
 cp themes/blowfish/layouts/_default/single.html layouts/_default/single.html 
 ```
-Then include it in `single.html` or your post template **below `.Content`**:
+
+Then include the following in `single.html`, right below `.Content`:
 
 ```html
 {{ partial "article/faq-content.html" . }}
+```
+
+## 4. Add Structured Data for SEO (JSON-LD)
+
+Create:  `layouts/partials/seo/faq.html`
+
+```html
+{{ with .Params.faq }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- range $index, $faq := . -}}
+    {
+      "@type": "Question",
+      "name": {{ $faq.question | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $faq.answer | jsonify }}
+      }
+    }{{ if ne (add $index 1) (len $.Params.faq) }},{{ end }}
+    {{- end }}
+  ]
+}
+</script>
+{{ end }}
+
+```
+
+And include this in your `<head>` partial (`head.html`):
+copy from 
+
+```html
+{{ partial "seo/faq.html" . }}
 ```
