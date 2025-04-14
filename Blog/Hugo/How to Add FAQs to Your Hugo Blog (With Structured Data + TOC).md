@@ -88,7 +88,7 @@ Create:  `layouts/partials/seo/faq.html`
 ```
 
 And include this in your `<head>` partial (`head.html`):
-copy from 
+(Copy from `themes/blowfish/layouts/partials/` if missing)
 
 ```html
 {{ partial "seo/faq.html" . }}
