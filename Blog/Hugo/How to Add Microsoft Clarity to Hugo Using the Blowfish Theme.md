@@ -34,7 +34,7 @@ Example:
 
 4. **Rebuild and Deploy Your Site**
     - Run `hugo` and redeploy your site so the changes take effect.
-        
+    
 5. **Visit and Test**
     - Open your site in a regular browser window (not incognito or with adblock).
     - Click around and wait 10–30 minutes. Clarity will begin showing recordings under the **Recordings** tab.
